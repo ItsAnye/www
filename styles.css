@@ -146,19 +146,30 @@ body {
     left: 4.5rem;
 }
 
-@media all and (max-height: 540px){
+@media all and (max-height: 580px){
     .nav__list {
         gap: 1.5rem;
     }
 }
 
-@media all and (max-height: 470px){
+@media all and (max-height: 530px){
     .nav__list {
         gap: 1rem;
     }
 }
 
-@media all and (max-height: 435px){
+@media all and (max-height: 480px){
+    .nav__list i {
+        font-size: 25px;
+    }
+
+    .nav__settings i {
+        font-size: 25px;
+        margin-left: 6px;
+    }
+}
+
+@media all and (max-height: 430px){
     .nav__list i {
         font-size: 20px;
     }
@@ -166,7 +177,16 @@ body {
     .nav__settings i {
         font-size: 20px;
         margin-left: 8px;
-        margin-top: 35px;
+    }
+}
+
+@media all and (max-height: 400px){
+    .nav__list {
+        gap: 0.5rem;
+    }
+
+    .nav__settings {
+        position: absolute;
     }
 }
 
@@ -183,6 +203,6 @@ body {
 
     #logoImg {
         transition: all 200ms ease-in;
-        left: 10px
+        left: 10px;
     }
 }
