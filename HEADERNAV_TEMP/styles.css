@@ -142,35 +142,7 @@ body {
     font-size: 32px;
 }
 
-.fa-house-chimney:hover {
-    color: black;
-}
-
-.fa-compass:hover {
-    color: #2AAA8A;
-}
-
-.fa-address-card:hover {
-    color: #0066FF;
-}
-
-.fa-user-group:hover {
-    color: #E75480;
-}
-
-.fa-inbox:hover {
-    color: #BB001B;
-}
-
-.fa-hammer:hover {
-    color: #F7A233;
-}
-
-.fa-bolt:hover {
-    color: #FDD023;
-}
-
-.fa-gear:hover {
+.nav__list i:hover {
     color: var(--nav-gray500);
 }
 
@@ -252,28 +224,4 @@ body {
         transition: all 200ms ease-in;
         left: 10px;
     }
-}
-
-#page_title {
-    margin-left: 100px;
-    margin-top: 10px;
-}
-
-#scrolling-new {
-    margin-left: 100px;
-    max-height: 210px;
-    border: 1px solid #ddd;
-    display: flex;
-    overflow-x: auto;
-    overflow-y: hidden;
-}
-
-#scrolling-new .card{
-    min-width: 160px;
-    height: 200px;
-    line-height: 160px;
-    text-align: center;
-    background-color: #ddd;
-    border: 1px solid black;
-    margin-right: 20px;
 }
