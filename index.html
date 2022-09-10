@@ -5,15 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meltdown</title>
-    <link rel="stylesheet" href="styles.css">
-    <!-- <script src="main.js"></script> -->
 
+    <!-- Source -->
+    <link rel="stylesheet" href="styles.css">
+    <script src="main.js"></script>
+
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@1,900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@1,900&family=Play&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"/>
 </head>
 <body>
     <div id="header">
@@ -35,5 +40,38 @@
             <div id="login" class="unselectable">Log in</div>
         </a>
     </div>
+
+     <!-- Navbar -->
+     <div id="navbar">
+        <ul class="nav__list">
+            <li class="nav__item" data-tooltip="Home">
+                <a href="#"><i class="fa-solid fa-house-chimney" style="margin-top: 10px;"></i></a>
+            </li>
+
+            <li class="nav__item" data-tooltip="Profile">
+                <a href="#"><i class="fa-solid fa-address-card"></i></a>
+            </li>
+
+            <li class="nav__item" data-tooltip="Friends">
+                <a href="#"><i class="fa-solid fa-user-group"></i></a>
+            </li>
+
+            <li class="nav__item" data-tooltip="Inbox">
+                <a href="#"><i class="fa-solid fa-inbox"></i></a>
+            </li>
+
+            <li class="nav__item" data-tooltip="Chat">
+                <a href="#"><i class="fa-solid fa-comment-dots"></i></a>
+            </li>
+
+            <li class="nav__item" data-tooltip="Premium">
+                <a href="#"><i class="fa-solid fa-bolt"></i></a>
+            </li>
+        </ul>
+    </div>
+
+    <li class="nav__settings" data-tooltip="Settings" style="position: absolute; bottom: 30px; left: 22.5px;">
+        <a href="#"><i class="fa-solid fa-gear"></i></a>
+    </li>
 </body>
 </html>

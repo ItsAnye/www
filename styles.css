@@ -1,11 +1,28 @@
+:root {
+    --nav-primary: #6aeeb5;
+    --nav-primary-hover: #29e6a7;
+    --nav-primary-dark: #039d69;
+    --nav-gray100: #f0f7f8;
+    --nav-gray200: #cfd8dc;
+    --nav-gray300: #a7b7be;
+    --nav-gray400: #6b7e86;
+    --nav-gray500: #425a65;
+}
+
 body {
     overscroll-behavior: none;
     margin: 0;
+    background: var(--nav-gray100);
+    font-family: 'Play', sans-serif;
 }
 
 #header {
     height: 60px;
     background-color: #20dbc2;
+}
+
+#logo {
+    transition: all 200ms ease-in-out;
 }
 
 #logoBorder {
@@ -49,11 +66,11 @@ body {
 }
 
 #login {
-    right: 40px;
+    right: 20px;
 }
 
 #signup {
-    right: 140px;
+    right: 100px;
 }
 
 #signup, #login {
@@ -62,4 +79,110 @@ body {
     font-family: 'Play', sans-serif;
     font-size: 18px;
     color: black;
+}
+
+/* Navigation Bar */
+#navbar {
+    position: absolute;
+    top: 45px;
+}
+
+.nav__list {
+    background: white;
+    box-shadow: 0px 0px 10px var(--nav-gray200);
+    padding: 1rem 0;
+    width: 5rem;
+    height: 100vh;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    transition: gap 200ms ease-in-out;
+}
+
+.nav__settings {
+    list-style: none;
+    position: relative;
+}
+
+.nav__settings i {
+    color: var(--nav-gray400);
+    transition: all 200ms ease-in;
+    font-size: 32px;
+}
+
+.nav__list .nav__item {
+    list-style: none;
+    position: relative;
+}
+
+.nav__list i {
+    color: var(--nav-gray400);
+    transition: all 200ms ease-in;
+    font-size: 32px;
+}
+
+.nav__list i:hover {
+    color: var(--nav-gray500);
+}
+
+.nav__item::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    left: 4rem;
+    top: -0.25rem;
+    background: var(--nav-gray500);
+    color: white;
+    padding: 0.8rem;
+    border-radius: 0.2rem;
+    transition: all 200ms ease-in;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.nav__item:hover::before {
+    opacity: 1;
+    left: 4.5rem;
+}
+
+@media all and (max-height: 540px){
+    .nav__list {
+        gap: 1.5rem;
+    }
+}
+
+@media all and (max-height: 470px){
+    .nav__list {
+        gap: 1rem;
+    }
+}
+
+@media all and (max-height: 435px){
+    .nav__list i {
+        font-size: 20px;
+    }
+
+    .nav__settings i {
+        font-size: 20px;
+        margin-left: 8px;
+        margin-top: 35px;
+    }
+}
+
+@media all and (max-width: 350px){
+    #logoName {
+        transition: all 200ms ease-in;
+        opacity: 0;
+    }
+
+    #logoBorder {
+        transition: all 200ms ease-in;
+        width: 45px;
+    }
+
+    #logoImg {
+        transition: all 200ms ease-in;
+        left: 10px
+    }
 }
