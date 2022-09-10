@@ -112,6 +112,25 @@ body {
     font-size: 32px;
 }
 
+.nav__settings::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    left: 4rem;
+    top: -0.25rem;
+    background: var(--nav-gray500);
+    color: white;
+    padding: 0.8rem;
+    border-radius: 0.2rem;
+    transition: all 200ms ease-in;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.nav__settings:hover::before {
+    opacity: 1;
+    left: 4.5rem;
+}
+
 .nav__list .nav__item {
     list-style: none;
     position: relative;
