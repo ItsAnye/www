@@ -1,0 +1,65 @@
+body {
+    overscroll-behavior: none;
+    margin: 0;
+}
+
+#header {
+    height: 60px;
+    background-color: #20dbc2;
+}
+
+#logoBorder {
+    height: 45px;
+    width: 170px;
+    margin-left: 10px;
+    margin-top: 7.5px;
+    position: absolute;
+    background-color: white;
+    border-radius: 30px;
+}
+
+#logoImg {
+    position: absolute;
+    top: 9px;
+    left: 13px;
+}
+
+#logoName {
+    font-family: 'Lato', sans-serif;
+    position: absolute;
+    left: 60px;
+    top: -2px;
+    font-size: 20px;
+    color: black;
+}
+
+.unselectable {
+    -webkit-user-select: none; /* Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
+}
+
+.undraggable {
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+#login {
+    right: 40px;
+}
+
+#signup {
+    right: 140px;
+}
+
+#signup, #login {
+    position: absolute;
+    margin-top: 18px;
+    font-family: 'Play', sans-serif;
+    font-size: 18px;
+    color: black;
+}
