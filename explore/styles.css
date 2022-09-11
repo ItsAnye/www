@@ -55,6 +55,7 @@ body {
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* IE10+/Edge */
     user-select: none; /* Standard */
+    cursor: pointer;
 }
 
 .undraggable {
@@ -271,9 +272,12 @@ body {
 #scrolling-new .card{
     min-width: 160px;
     height: 200px;
-    line-height: 160px;
     text-align: center;
-    background-color: #ddd;
-    border: 1px solid black;
+    border: 3px solid black;
     margin-right: 20px;
+    transition: all 200ms ease;
+}
+
+#scrolling-new h2 {
+    transition: all 200ms ease;
 }
