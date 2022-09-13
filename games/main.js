@@ -14,4 +14,5 @@ if(creators.length > 1){
     document.body.innerHTML += `<h3 class="unselectable" style="position: absolute; margin-left: 505px; margin-top: -250px;">By: ${creators[0]}</h3>`
 }
 
-//
+//Play button
+document.body.innerHTML += `<div title="Play" id="play_btn"><i class="fa-solid fa-caret-right" style="font-size: 70px; color: white; margin-left: 130px; margin-top: 2px;"></i></div>`;

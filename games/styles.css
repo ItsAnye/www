@@ -238,3 +238,17 @@ h3 p {
 h3 p:hover {
     cursor: pointer;
 }
+
+#play_btn {
+    position: absolute;
+    margin-left: 505px;
+    margin-top: -75px;
+    background-color: green;
+    width: 300px;
+    height: 75px;
+    border-radius: 20px;
+}
+
+#play_btn:hover {
+    cursor: pointer;
+}
