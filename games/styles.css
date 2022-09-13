@@ -252,3 +252,10 @@ h3 p:hover {
 #play_btn:hover {
     cursor: pointer;
 }
+
+#desc_box {
+    overflow-y: scroll;
+    height: 250px;
+    margin-left: 180px;
+    width: calc(100% - 400px);
+}
