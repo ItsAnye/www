@@ -19,6 +19,40 @@ body {
 #header {
     height: 60px;
     background-color: #20dbc2;
+    position: sticky;
+    top: 0;
+}
+
+.fa-house-chimney:hover {
+    color: black;
+}
+
+.fa-compass:hover {
+    color: #2AAA8A;
+}
+
+.fa-address-card:hover {
+    color: #0066FF;
+}
+
+.fa-user-group:hover {
+    color: #E75480;
+}
+
+.fa-inbox:hover {
+    color: #BB001B;
+}
+
+.fa-hammer:hover {
+    color: #F7A233;
+}
+
+.fa-bolt:hover {
+    color: #FDD023;
+}
+
+.fa-gear:hover {
+    color: var(--nav-gray500);
 }
 
 #logo {
@@ -140,10 +174,6 @@ body {
     color: var(--nav-gray400);
     transition: all 200ms ease-in;
     font-size: 32px;
-}
-
-.nav__list i:hover {
-    color: var(--nav-gray500);
 }
 
 .nav__item::before {

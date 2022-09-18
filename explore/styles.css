@@ -19,6 +19,8 @@ body {
 #header {
     height: 60px;
     background-color: #20dbc2;
+    position: sticky;
+    top: 0;
 }
 
 #logo {
