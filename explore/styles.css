@@ -262,7 +262,11 @@ body {
     margin-top: 10px;
 }
 
-#scrolling-new {
+.scrolling-title {
+    margin-left: 100px;
+}
+
+.scroller {
     margin-left: 100px;
     max-height: 210px;
     border: 1px solid #ddd;
@@ -271,7 +275,7 @@ body {
     overflow-y: hidden;
 }
 
-#scrolling-new .card{
+.scroller .card{
     min-width: 160px;
     height: 200px;
     text-align: center;
@@ -280,6 +284,6 @@ body {
     transition: all 200ms ease;
 }
 
-#scrolling-new h2 {
+.scroller h2 {
     transition: all 200ms ease;
 }

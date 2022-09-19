@@ -5,7 +5,8 @@ let container = document.getElementById('content');
 const urlParams = new URLSearchParams(window.location.search);
 let gamename = urlParams.get('name');
 let desc = urlParams.get('desc');
-let creatorsStr = urlParams.get('creators')
+let creatorsStr = urlParams.get('creators');
+let wip = urlParams.get('wip');
 
 //Constants (for now)
 let views = 0;
@@ -20,9 +21,15 @@ if(gamename == null || desc == null || creatorsStr == null){
 }
 
 let creators = creatorsStr.slice(1, -1).replace(/['"]+/g, '').split(',');
+let wip_thumb = "hweri384_12424y1924y247ydsu";
+//Image
+if(wip == "true"){
+    container.innerHTML += `<img src="../images/thumbnails/${wip_thumb}.png" style="border: 5px solid black; margin-left: calc(80px + 100px); margin-top: 100px; width: 300px;">`
+} else {
+    container.innerHTML += `<img src="../images/thumbnails/${gamename.replace(' ', '_')}.png" style="border: 5px solid black; margin-left: calc(80px + 100px); margin-top: 100px; width: 300px;">`
+}
 
-//Image + Title
-container.innerHTML += `<img src="../images/thumbnails/${gamename.replace(' ', '_')}.png" style="border: 5px solid black; margin-left: calc(80px + 100px); margin-top: 100px; width: 300px;">`
+//Title
 container.innerHTML += `<h1 class="unselectable" style="position: absolute; margin-left: 500px; margin-top: -300px;">${gamename}</h1>`
 
 //Creators
