@@ -1,4 +1,4 @@
-let wip_desc = "Work In Progress";
+let wip_desc = "This experience is currently being built and is under construction. We apologize for any inconveniences.";
 let wip_thumb = "hweri384_12424y1924y247ydsu";
 
 function createCard(wrapper, name, desc='a new game', bg="ddd", creators=['Meltdown'], wip=false){

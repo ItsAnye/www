@@ -32,7 +32,7 @@ if(wip == "true"){
 }
 
 //Title
-container.innerHTML += `<h1 class="unselectable" style="position: absolute; margin-left: 500px; margin-top: -300px;">${gamename}</h1>`
+container.innerHTML += `<h1 id="gamename" class="unselectable">${gamename}</h1>`
 
 //Creators
 function showAllCreators() {
@@ -64,7 +64,11 @@ if(creators.length > 1){
 }
 
 //Play button
-container.innerHTML += `<div title="Play" onclick="play();" id="play_btn"><i class="fa-solid fa-caret-right" style="font-size: 70px; color: white; margin-left: 130px; margin-top: 2px;"></i></div>`;
+if(wip == "false"){
+    container.innerHTML += `<div title="Enter experience" onclick="play();" id="play_btn" style="cursor: pointer;"><i class="fa-solid fa-caret-right" style="font-size: 70px; color: white; margin-left: 130px; margin-top: 2px;"></i></div>`;
+} else {
+    container.innerHTML += `<div title="Experience is not ready" id="play_btn" style="-webkit-filter: grayscale(1)"><i class="fa-solid fa-caret-right" style="font-size: 70px; color: white; margin-left: 130px; margin-top: 2px;"></i></div>`;
+}
 
 //Redirect to game
 function play(){
@@ -103,4 +107,8 @@ container.innerHTML += `<div id="voting"><span id="up_percent" title="${upvotes.
 container.innerHTML += `<div id="views" title="${views} views"><i class="fa-solid fa-eye"></i> ${views}</div>`;
 
 //Created / Updated
-container.innerHTML += `<div id="info"><div id="created">Created: <br>${created}</div><div id="updated">Updated: <br>${updated}</div></div>`
+if(wip == "false"){
+    container.innerHTML += `<div id="info"><div id="created">Created: <br>${created}</div><div id="updated">Updated: <br>${updated}</div></div>`
+} else {
+    container.innerHTML += `<div id="info" style="background-color: #eed202;"><span>This experience is under construction</span></div>`
+}

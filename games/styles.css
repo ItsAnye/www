@@ -226,10 +226,23 @@ body {
     }
 }
 
+#gamename {
+    position: absolute;
+    margin-left: 500px;
+    margin-top: -300px;
+}
+
 #creators {
     position: absolute;
     margin-left: 505px;
     margin-top: -270px;
+}
+
+@media all and (max-width: 830px) {
+    #gamename {
+        margin-left: 180px;
+        margin-top: -355px;
+    }
 }
 
 #creators p {
@@ -260,10 +273,6 @@ body {
     -webkit-text-fill-color: white;
     -webkit-text-stroke-width: 5px;
     -webkit-text-stroke-color: black;
-}
-
-#play_btn:hover {
-    cursor: pointer;
 }
 
 #desc_box {
@@ -355,6 +364,14 @@ body {
     width: calc(100% - 400px);
     border: 5px solid black;
     display: flex;
+}
+
+#info span {
+    text-align: center;
+    font-size: 25px;
+    margin-left: 50%;
+    margin-top: 10px;
+    transform: translateX(-50%);
 }
 
 #created, #updated {
