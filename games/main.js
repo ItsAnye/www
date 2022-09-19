@@ -21,8 +21,10 @@ if(gamename == null || desc == null || creatorsStr == null){
 }
 
 let creators = creatorsStr.slice(1, -1).replace(/['"]+/g, '').split(',');
-let wip_thumb = "hweri384_12424y1924y247ydsu";
+
 //Image
+let wip_thumb = "hweri384_12424y1924y247ydsu";
+
 if(wip == "true"){
     container.innerHTML += `<img src="../images/thumbnails/${wip_thumb}.png" style="border: 5px solid black; margin-left: calc(80px + 100px); margin-top: 100px; width: 300px;">`
 } else {
