@@ -23,7 +23,7 @@ if(gamename == null || desc == null || creatorsStr == null){
 let creators = creatorsStr.slice(1, -1).replace(/['"]+/g, '').split(',');
 
 //Image
-let wip_thumb = "hweri384_12424y1924y247ydsu";
+let wip_thumb = "MELTDOWN-wip";
 
 if(wip == "true"){
     container.innerHTML += `<img src="../images/thumbnails/${wip_thumb}.png" style="border: 5px solid black; margin-left: calc(80px + 100px); margin-top: 100px; width: 300px;">`
@@ -108,7 +108,11 @@ container.innerHTML += `<div id="views" title="${views} views"><i class="fa-soli
 
 //Created / Updated
 if(wip == "false"){
-    container.innerHTML += `<div id="info"><div id="created">Created: <br>${created}</div><div id="updated">Updated: <br>${updated}</div></div>`
+    container.innerHTML += `<div id="info"><div id="created">Created: <br>${created}</div><div id="updated">Updated: <br>${updated}</div></div>`;
 } else {
-    container.innerHTML += `<div id="info" style="background-color: #eed202;"><span>This experience is under construction</span></div>`
+    if(creators[0] == 'Meltdown'){
+        container.innerHTML += `<div id="info" style="background-color: #eed202;"><span>This website is under construction</span></div>`;
+    } else {
+        container.innerHTML += `<div id="info" style="background-color: #eed202;"><span>This experience is under construction</span></div>`;
+    }
 }

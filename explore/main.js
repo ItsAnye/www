@@ -1,5 +1,5 @@
 let wip_desc = "This experience is currently being built and is under construction. We apologize for any inconveniences.";
-let wip_thumb = "hweri384_12424y1924y247ydsu";
+let wip_thumb = "MELTDOWN-wip";
 
 function createCard(wrapper, name, desc='a new game', bg="ddd", creators=['Meltdown'], wip=false){
     let scroller = document.getElementById(`scrolling-${wrapper}`);
@@ -27,5 +27,14 @@ createCard('new', "Fish Ahoy", 'fishing is fishy', 'e4d999', ['Westineye', 'Pixi
 createCard('new', "Clicker Survival", 'A clicker game set in the modern world.\nYou can start by heading over to the corn field. Start clicking, because thats how you earn money at first!\n\nOnce you have enough money, you can leave the corn field and walk up to the tent. Purchasing items in the shop helps increase your cps (clicks per second). This allows you to gain money without even clicking. \n\n Made by JTC and Anye during Meltdown Summer Camp 2022. \n Have fun!', '477547', ['JTC', 'Anye'])
 
 //Work in Progress
-createCard('wip', "First Class", wip_desc, 'ddd', ['Anye'], true);
-createCard()
+createCard('wip', "Higher Ground", wip_desc, 'ddd', ['Anye'], true);
+createCard('wip', 'Mad World', wip_desc, 'ddd', ['Anye'], true);
+createCard('wip', 'Pizza Legends', wip_desc, 'ddd', ['Anye'], true);
+createCard('wip', 'Tower of Hell', wip_desc, 'ddd', ['Anye'], true);
+
+//Official WIP
+createCard('official', "Studio", 'A tool to help you create your own games on Meltdown', 'ddd', ['Meltdown'], true)
+createCard('official', "Clips", 'A tool to help you create cutscenes and animations', 'ddd', ['Meltdown'], true)
+createCard('official', "Info", "Our offical documentation", 'ddd', ['Meltdown'], true)
+createCard('official', "Dev", 'Where all of our staff can report bugs/feature requests', 'ddd', ['Meltdown'], true)
+createCard('official', "Learn", 'Learn all the programming skills you need to work with us!', 'ddd', ['Meltdown'], true)

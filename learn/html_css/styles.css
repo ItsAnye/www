@@ -21,7 +21,38 @@ body {
     background-color: #20dbc2;
     position: sticky;
     top: 0;
-    z-index: 10000;
+}
+
+.fa-house-chimney:hover {
+    color: black;
+}
+
+.fa-compass:hover {
+    color: #2AAA8A;
+}
+
+.fa-address-card:hover {
+    color: #0066FF;
+}
+
+.fa-user-group:hover {
+    color: #E75480;
+}
+
+.fa-inbox:hover {
+    color: #BB001B;
+}
+
+.fa-hammer:hover {
+    color: #F7A233;
+}
+
+.fa-bolt:hover {
+    color: #FDD023;
+}
+
+.fa-gear:hover {
+    color: var(--nav-gray500);
 }
 
 #logo {
@@ -113,8 +144,6 @@ body {
     color: var(--nav-gray400);
     transition: all 200ms ease-in;
     font-size: 32px;
-    position: fixed;
-    margin-top: -20px;
 }
 
 .nav__settings::before {
@@ -225,163 +254,4 @@ body {
         transition: all 200ms ease-in;
         left: 10px;
     }
-}
-
-#gamename {
-    position: absolute;
-    margin-left: 500px;
-    margin-top: -300px;
-}
-
-#creators {
-    position: absolute;
-    margin-left: 505px;
-    margin-top: -270px;
-}
-
-@media all and (max-width: 830px) {
-    #gamename {
-        margin-left: 180px;
-        margin-top: -355px;
-    }
-}
-
-#creators p {
-    display: inline-block;
-    width: 25px;
-    border: 2px solid grey;
-    background-color: grey;
-    border-radius: 100%;
-    color: blue;
-}
-
-#creators p:hover {
-    cursor: pointer;
-}
-
-#play_btn {
-    position: absolute;
-    margin-left: 505px;
-    margin-top: -87px;
-    background-color: green;
-    width: 300px;
-    height: 75px;
-    border-radius: 20px;
-    border: 5px solid black;
-}
-
-#play_btn i {
-    -webkit-text-fill-color: white;
-    -webkit-text-stroke-width: 5px;
-    -webkit-text-stroke-color: black;
-}
-
-#desc_box {
-    overflow-y: scroll;
-    height: 250px;
-    margin-left: 180px;
-    margin-top: 5px;
-    width: calc(100% - 400px);
-    border: 5px solid black;
-    padding-left: 10px;
-}
-
-.fa-angle-up {
-    color: rgb(3, 167, 3);
-    cursor: pointer;
-}
-
-.fa-angle-down {
-    color: red;
-    cursor: pointer;
-}
-
-.fa-house-chimney:hover {
-    color: black;
-}
-
-.fa-compass:hover {
-    color: #2AAA8A;
-}
-
-.fa-address-card:hover {
-    color: #0066FF;
-}
-
-.fa-user-group:hover {
-    color: #E75480;
-}
-
-.fa-inbox:hover {
-    color: #BB001B;
-}
-
-.fa-hammer:hover {
-    color: #F7A233;
-}
-
-.fa-bolt:hover {
-    color: #FDD023;
-}
-
-.fa-gear:hover {
-    color: var(--nav-gray500);
-}
-
-#voting {
-    position: absolute;
-    margin-left: calc(270px + (100% - 560px));
-    font-size: 40px;
-    transform: translateX(-50%);
-}
-
-#up_percent {
-    position: relative;
-    color: rgb(3, 167, 3);
-    font-size: 30px;
-    bottom: 5px;
-    right: 5px;
-}
-
-#down_percent {
-    position: relative;
-    color: red;
-    font-size: 30px;
-    bottom: 5px;
-    left: 5px;
-}
-
-#views {
-    position: relative;
-    margin-left: calc(270px + (100% - 610px));
-    margin-top: 50px;
-    font-size: 40px;
-}
-
-#info {
-    height: 50px;
-    margin-left: 180px;
-    margin-top: 5px;
-    width: calc(100% - 400px);
-    border: 5px solid black;
-    display: flex;
-}
-
-#info span {
-    text-align: center;
-    font-size: 25px;
-    margin-left: 50%;
-    margin-top: 10px;
-    transform: translateX(-50%);
-}
-
-#created, #updated {
-    width: 50%;
-    height: 100%;
-    text-align: center;
-    font-size: 20px;
-}
-
-#created {
-    border-right: 5px solid black;
 }
