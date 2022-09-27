@@ -8,7 +8,6 @@
 
     <!-- Source -->
     <link rel="stylesheet" href="styles.css">
-    <script src="main.js"></script>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,6 +15,7 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@1,900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@1,900&family=Play&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oxygen+Mono&display=swap" rel="stylesheet">
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"/>
@@ -50,7 +50,7 @@
             </li>
 
             <li class="nav__item" data-tooltip="Explore">
-                <a href="../explore/"><i class="fa-solid fa-compass"></i></a>
+                <a href="../../explore/"><i class="fa-solid fa-compass"></i></a>
             </li>
 
             <li class="nav__item" data-tooltip="Profile">
@@ -78,5 +78,38 @@
     <li class="nav__settings" data-tooltip="Settings" style="position: absolute; bottom: 30px; left: 22.5px;">
         <a href="#"><i class="fa-solid fa-gear"></i></a>
     </li>
+
+    <!-- Learn -->
+    <div id="learn">
+        <p class="instructions">HTML, also know as <i><a href="../../info/">Hyper Text Markup Language</a></i>, is the language for the web.
+            Most of the websites you go to are created with HTML, including Meltdown! 
+            In this course, you will learn how to create your very own website. 
+            If that sounds good to you, then let's get into it!
+            <br>
+            <br>
+            HTML is made up of <i>tags</i>. The first tag we are going to learn is the <code>&lt;h1&gt;</code> tag:
+        </p>
+        <meltdown-code data-lang="HTML" id="one"></meltdown-code>
+        <p class="instructions">
+            See where we wrote <code>&lt;h1&gt;</code>? That is called an <a href="../../info/">opening tag</a>.
+            Notice how after we typed <code>&lt;h1&gt;</code> , we added <code>&lt;/h1&gt;</code>
+            This is called a <a href="../../info/">closing tag</a>. The main difference between an opening
+            and closing tag is that in a closing tag, you have to put a <code>/</code> before the tag name.
+            In an <code>&lt;h1&gt;</code> , the closing tag would like this: <code>&lt;/h1&gt;</code> .
+        </p>
+
+        <!-- Todo -->
+        <div id="todo">
+            <input type="checkbox" id="item_one" name="vehicle1" value="Bike" checked disabled>
+            <label for="item_one">Type <code>Hello World!</code> between the opening and closing tags.</label><br>
+        </div>
+    </div>
+
+    <!-- Code Editor -->
+    <div class="main">
+        <textarea onkeyup="refresh()" id="editor-textarea" placeholder="Start coding..."><h1></h1></textarea>
+        <iframe id="viewer"></iframe>
+    </div>
 </body>
+<script src="main.js"></script>
 </html>

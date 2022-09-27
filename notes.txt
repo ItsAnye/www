@@ -1,6 +1,13 @@
 Thumbnails (1:1)
 Pictures on game page (5:3)
 
-Work in Progress thumbnail code - hweri384_12424y1924y247ydsu
+When game is published, ask for thumbnail, game page picture, bg color on hover, and create a folder under /play with their game name (lowercase and ' ' is replaced by '_'), do this using Python/Flask backend.
+Also give them chance to change font-size if it doesn't fit properly by default.
 
-When game is published, ask for thumbnail, game page picture, bg color on hover, and create a folder under /play with their game name (lowercase and ' ' is replaced by '_'), do this using Python/Flask backend
+Use w3schools color coding, and website design for learn.*
+
+Color coding: Some tags don't show on innerHTML, like <head>, <p> doesn't show a closing tag?
+
+Checkmark on TODO page is checkable sometimes, try making it on your own.
+
+On home page, when you scroll, gear icon moves too, make it fixed/sticky?
