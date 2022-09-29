@@ -337,17 +337,37 @@ code {
     white-space: nowrap;
 }
 
-#todo {
+#tasks {
     margin-left: 20px;
     line-height: 25px;
 }
 
-#todo input {
-    clip-path: circle(46% at 50% 50%);
+#todo_icon {
     width: 30px;
     height: 30px;
+    background-color: lightgray;
+    display: inline-block;
+    border-radius: 20px;
 }
 
-#todo label {
-    position: relative;
+#todo_icon i {
+    font-size: 30px;
+    margin-left: 2px;
+    margin-top: 1px;
+}
+
+.task_input {
+    border-radius: 10px 0 0 10px;
+    border: 2px solid black;
+    padding-left: 10px;
+    height: 24px;
+    outline: none;
+}
+
+.task_button {
+    border: 2px solid black;
+    border-left: 0;
+    border-radius: 0 10px 10px 0;
+    height: 30px;
+    cursor: pointer;
 }

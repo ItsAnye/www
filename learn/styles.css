@@ -255,3 +255,39 @@ body {
         left: 10px;
     }
 }
+
+.fa-gear {
+    margin-top: -20px;
+    position: fixed;
+}
+
+
+/* CSS */
+#languages {
+    margin-left: 40px;
+    margin-top: 0px;
+}
+
+#languages li {
+    background-color: red;
+    list-style: none;
+    height: 300px;
+    width: 100%;
+}
+
+#languages li:nth-child(1){
+    background-color: #D9EEE1
+}
+
+#languages li:nth-child(2){
+    background-color: #FFF3A3
+}
+
+#languages li:nth-child(3){
+    background-color: #282A35;
+    color: white;
+}
+
+#languages li:nth-child(4){
+    background-color: #96D3D4
+}

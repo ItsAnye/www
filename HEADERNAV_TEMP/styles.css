@@ -176,6 +176,11 @@ body {
     font-size: 32px;
 }
 
+.fa-gear {
+    margin-top: -20px;
+    position: fixed;
+}
+
 .nav__item::before {
     content: attr(data-tooltip);
     position: absolute;

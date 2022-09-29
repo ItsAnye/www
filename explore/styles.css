@@ -173,6 +173,11 @@ body {
     color: #FDD023;
 }
 
+.fa-gear {
+    margin-top: -20px;
+    position: fixed;
+}
+
 .fa-gear:hover {
     color: var(--nav-gray500);
 }

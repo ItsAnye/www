@@ -1,0 +1,5 @@
+Thumbnails (1:1)
+Pictures on game page (5:3)
+
+When game is published, ask for thumbnail, game page picture, bg color on hover, and create a folder under /play with their game name (lowercase and ' ' is replaced by '_'), do this using Python/Flask backend.
+Also give them chance to change font-size if it doesn't fit properly by default.

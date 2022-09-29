@@ -1,0 +1,1 @@
+Color coding: Some tags don't show on innerHTML, like <head>, <p> doesn't show a closing tag?
