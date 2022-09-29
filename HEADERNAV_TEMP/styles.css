@@ -21,6 +21,7 @@ body {
     background-color: #20dbc2;
     position: sticky;
     top: 0;
+    z-index: 10000;
 }
 
 .fa-house-chimney:hover {
