@@ -1020,7 +1020,10 @@ for (let i = 0; i < coll.length; i++) {
 }
 
 function populateExplorer(){
-    document.getElementById('explorer_world_content').firstElementChild.innerHTML = ''; //Clear
+    //Clear
+    document.getElementById('explorer_world_content').firstElementChild.innerHTML = '';
+    document.getElementById('explorer_light_content').firstElementChild.innerHTML = '';
+
     for(let i = 0; i < projectData.length; i++) {
         if(projectData[i].object.type == 'Mesh'){
             document.getElementById('explorer_world_content').firstElementChild.innerHTML += `<li class="li_click_select"><i class="fa-solid fa-cube"></i>  ${projectData[i].object.name}</li>`;
