@@ -1,0 +1,304 @@
+body {
+    margin: 0px;
+    font-family: "Raleway", sans-serif;
+    overflow: none;
+    overscroll-behavior: none;
+}
+
+.ui {
+    position: absolute;
+    top: 0;
+}
+
+#header {
+    width: 100%;
+    height: 35px;
+    top: 0;
+    background-color: lightgrey;
+    font-family: 'Play', sans-serif;
+}
+
+#menu {
+    background-color: seashell;
+    width: 100%;
+    height: 75px;
+    border-style: solid none solid none;
+}
+
+.hide {
+    display: none;
+}
+
+#testing_frame {
+    position: fixed;
+    top: 110px; 
+    left: 0; 
+    bottom: 0; 
+    right: 0; 
+    width: 100%; 
+    height: 100%; 
+    border: none; 
+    margin: 0; 
+    padding: 0; 
+    overflow: hidden; 
+    z-index: 999999; 
+    display: none;
+}
+
+.tablinks {
+    height: 35px;
+}
+
+.menu_tablinks {
+    height: 35px;
+}
+
+.menu_btn {
+    margin-top: 10px;
+    margin-left: 10px;
+    height: 55px;
+    width: 55px;
+}
+.buttonDefaultSize {
+    font-size: 13px;
+}
+
+.center {
+    text-align: center;
+}
+
+#properties_panel {
+    width: 300px;
+    height: calc((100% - 110px) / 2);
+    background-color: seashell;
+    right: 0%;
+    top: calc(((100% - 110px) / 2) + 110px);
+    border-style: none solid solid solid;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+#explorer_panel {
+    width: 300px;
+    height: calc((100% - 110px) / 2);
+    background-color: seashell;
+    right: 0%;
+    top: 110px;
+    border-style: none solid solid solid;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+#explorer_header {
+    width: 298px;
+    height: 30px;
+    background-color: rgb(238, 226, 217);
+    border-style: none solid solid none;
+}
+
+#explorer_text {
+    font-weight: 400;
+}
+
+.explorer_collapsible {
+    background: none;
+    color: black;
+    border: none;
+    width: 100%;
+    text-align: left;
+    margin-left: 5px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.explorer_collapsible_content {
+    display: none;
+    background-color: #f1f1f1;
+}
+
+.explorer_collapsible_content p {
+    margin-top: 15px;
+    margin-left: 10px;
+}
+
+.explorer_collapsible_content ul {
+    list-style: none;
+}
+
+.explorer_collapsible_content ul li {
+    margin-left: 20px;
+    cursor: pointer;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.explorer_collapsible_content ul li:hover {
+    background-color: rgb(238, 226, 217);
+}
+
+#properties_header {
+    width: 298px;
+    height: 30px;
+    background-color: rgb(238, 226, 217);
+    border-style: none solid solid none;
+}
+
+#properties_text {
+    font-weight: 400;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+td, th {
+    border: 1px solid #000000;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+.dropdown_btn {
+    margin-top: 0px;
+    margin-left: 10px;
+    height: 40px;
+    width: 55px;
+}
+
+.dropdown_arw {
+    margin-top: 50px;
+    margin-left: -55px;
+    height: 15px;
+    width: 55px;
+    font-size: 10px;
+}
+
+#INSERTnewObjectDropdown {
+    height: 200px;
+    width: 100px;
+    background-color: rgb(238, 226, 217);
+    z-index: 100;
+    margin-top: 110px;
+    margin-left: 60px;
+    border-style: none solid solid solid;
+    display: none;
+}
+
+.insertMeshOpt {
+    width: 100%;
+}
+
+#terrainEditorCanvas {
+    border: 2px solid black;
+    position: absolute;
+    bottom: 0;
+}
+
+.hideElement {
+    display: none; /* display: block */
+}
+
+.properties_label {
+    float: left;
+}
+
+.increment-button {
+    float: right;
+    color: black;
+    border-radius: 40%;
+    background-color:rgba(0, 0, 0, 0.08);
+}
+
+#positionInputY, #positionInputZ, #rotationInputY, #rotationInputZ, #scaleInputY, #scaleInputZ {
+    width: 30%;
+}
+
+#positionInputX, #rotationInputX, #scaleInputX {
+    width: 73%;
+}
+
+.increment-button-plus {
+    margin-right: 10px;
+}
+
+/* Chrome, Safari, Edge, Opera - Hiding Arrows*/
+#positionInputX::-webkit-outer-spin-button,
+#positionInputY::-webkit-outer-spin-button,
+#positionInputZ::-webkit-outer-spin-button,
+#rotationInputX::-webkit-outer-spin-button,
+#rotationInputY::-webkit-outer-spin-button,
+#rotationInputZ::-webkit-outer-spin-button,
+#scaleInputX::-webkit-outer-spin-button,
+#scaleInputY::-webkit-outer-spin-button,
+#scaleInputZ::-webkit-outer-spin-button,
+
+#positionInputX::-webkit-inner-spin-button,
+#positionInputY::-webkit-inner-spin-button,
+#positionInputZ::-webkit-inner-spin-button,
+#rotationInputX::-webkit-inner-spin-button,
+#rotationInputY::-webkit-inner-spin-button,
+#rotationInputZ::-webkit-inner-spin-button,
+#scaleInputX::-webkit-inner-spin-button,
+#scaleInputY::-webkit-inner-spin-button,
+#scaleInputZ::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+#positionInputX[type=number],
+#positionInputY[type=number],
+#positionInputZ[type=number],
+#rotationInputX[type=number],
+#rotationInputY[type=number],
+#rotationInputZ[type=number] {
+  -moz-appearance: textfield;
+}
+
+#color_input_div {
+    text-align: center;
+}
+
+#color_input {
+    margin-top: 15px;
+    width: 120px;
+    height: 40px;
+}
+
+.fa-earth-americas {
+    color:rgb(0, 110, 255);
+    background-color: rgb(0, 255, 0);
+    border-radius: 20px;
+}
+
+.fa-lightbulb {
+    color: rgb(233, 203, 28);
+}
+
+.fa-comment-dots {
+    color: grey;
+}
+
+.fa-award {
+    color: rgb(217, 78, 78);
+}
+
+.fa-user {
+    color: black;
+}
+
+.fa-warehouse {
+    color: rgb(221, 84, 207);
+}
+
+.fa-spell-check {
+    color:rgb(75, 171, 48)
+}

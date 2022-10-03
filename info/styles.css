@@ -21,6 +21,39 @@ body {
     background-color: #20dbc2;
     position: sticky;
     top: 0;
+    z-index: 10000;
+}
+
+.fa-house-chimney:hover {
+    color: black;
+}
+
+.fa-compass:hover {
+    color: #2AAA8A;
+}
+
+.fa-address-card:hover {
+    color: #0066FF;
+}
+
+.fa-user-group:hover {
+    color: #E75480;
+}
+
+.fa-inbox:hover {
+    color: #BB001B;
+}
+
+.fa-hammer:hover {
+    color: #F7A233;
+}
+
+.fa-bolt:hover {
+    color: #FDD023;
+}
+
+.fa-gear:hover {
+    color: var(--nav-gray500);
 }
 
 #logo {
@@ -57,7 +90,6 @@ body {
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* IE10+/Edge */
     user-select: none; /* Standard */
-    cursor: pointer;
 }
 
 .undraggable {
@@ -145,41 +177,9 @@ body {
     font-size: 32px;
 }
 
-.fa-house-chimney:hover {
-    color: black;
-}
-
-.fa-compass:hover {
-    color: #2AAA8A;
-}
-
-.fa-address-card:hover {
-    color: #0066FF;
-}
-
-.fa-user-group:hover {
-    color: #E75480;
-}
-
-.fa-inbox:hover {
-    color: #BB001B;
-}
-
-.fa-hammer:hover {
-    color: #F7A233;
-}
-
-.fa-bolt:hover {
-    color: #FDD023;
-}
-
 .fa-gear {
     margin-top: -20px;
     position: fixed;
-}
-
-.fa-gear:hover {
-    color: var(--nav-gray500);
 }
 
 .nav__item::before {
@@ -262,34 +262,14 @@ body {
     }
 }
 
-#page_title {
-    margin-left: 100px;
-    margin-top: 10px;
+ul {
+    position: absolute;
 }
 
-.scrolling-title {
-    margin-left: 100px;
-}
-
-.scroller {
-    margin-left: 100px;
-    max-height: 210px;
-    border: 1px solid #ddd;
-    display: flex;
-    overflow-x: auto;
-    overflow-y: hidden;
-}
-
-.scroller .card{
-    min-width: 160px;
-    height: 200px;
-    text-align: center;
-    border: 3px solid black;
-    margin-right: 20px;
-    transition: all 200ms ease;
-    border-radius: 15px;
-}
-
-.scroller h2 {
-    transition: all 200ms ease;
+code {
+    background-color: #272822;
+    color: #f8f8f2;
+    border-radius: 0.3em;
+    padding: 4px 5px 6px;
+    white-space: nowrap;
 }
