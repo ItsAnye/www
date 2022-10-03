@@ -1,6 +1,7 @@
 /*
 Todo:
 Make a test feature which runs an iframe (or smth), seperate from visual editor (the thing you see while editing)!
+Lights selection in explorer - Only show position, color, and intensity for some lights. For ambient, just color and intensity.
 Lights selection in explorer - maybe show three.js light helpers for non ambient lights
 
 Bugs:
@@ -1041,7 +1042,6 @@ function updateExplorerClick() {
     let li_click_select = document.getElementsByClassName('li_click_select');
     for(let i = 0; i < li_click_select.length; i++){
         li_click_select[i].addEventListener("click", function() {
-            console.log(this.innerText.substring(1))
             selectExplorer(this.innerText.substring(1));
         });
     }
