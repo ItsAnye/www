@@ -4,7 +4,6 @@ Make a test feature which runs an iframe (or smth), seperate from visual editor 
 Lights selection in explorer - maybe show three.js light helpers for non ambient lights
 
 Bugs:
-iFrame only shows up sometimes
 */
 
 //Path: Projects/USER/PROJECT_NAME/
