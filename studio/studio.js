@@ -4,7 +4,7 @@ Make a test feature which runs an iframe (or smth), seperate from visual editor 
 Lights selection in explorer - maybe show three.js light helpers for non ambient lights
 
 Bugs:
-Make SpotLight Helper update on change, when adjusting light, also adjust helper from userData
+WEIRD THINGS HAPPENING WITH POSITION AND ROTATION FOR SPOTLIGHT HELPER
 */
 
 //Path: Projects/USER/PROJECT_NAME/
@@ -18,7 +18,7 @@ var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHei
 var renderer = new THREE.WebGLRenderer();
 
 var textureLoader = new THREE.TextureLoader();
-var heightMap = textureLoader.load('../Textures/height.png');
+// var heightMap = textureLoader.load('../Textures/height.png');
 var projectData = [];
 
 let posIncrement = 5;
@@ -54,6 +54,7 @@ projectData.push(
 
 var sunLight = new THREE.SpotLight(0xffffff, 1, 1000, Math.PI / 4);
 sunLight.position.set(0, 10, 0);
+sunLight.lookAt(0, 0, 0)
 sunLight.name = 'Sun';
 
 let sunLightHelper = new THREE.SpotLightHelper(sunLight);
@@ -122,7 +123,7 @@ textureGrass.repeat.set(10, 10);
 var planeGeometry = new THREE.BoxGeometry(500, 500, 1);
 var planeMaterial = new THREE.MeshStandardMaterial({
     map: textureGrass, 
-    displacementMap: heightMap,
+    // displacementMap: heightMap,
     displacementScale: 1,
     transparent: false,
     depthTest: true
@@ -157,6 +158,8 @@ let fbxLoader = new THREE.FBXLoader();
 function render() {
     requestAnimationFrame(render);
     renderer.render(scene, camera);
+
+    sunLightHelper.update();
 };
 
 document.getElementById("scene").appendChild(renderer.domElement);
@@ -1135,8 +1138,6 @@ function selectExplorer(name){
         }
     }
 }
-
-console.log(projectData)
 
 //Listeners
 document.addEventListener('mousedown', onDocumentMouseDown, false);
