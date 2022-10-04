@@ -4,6 +4,7 @@ Make a test feature which runs an iframe (or smth), seperate from visual editor 
 Lights selection in explorer - maybe show three.js light helpers for non ambient lights
 
 Bugs:
+Make SpotLight Helper update on change, when adjusting light, also adjust helper from userData
 */
 
 //Path: Projects/USER/PROJECT_NAME/
@@ -51,9 +52,15 @@ projectData.push(
     }
 );
 
-var sunLight = new THREE.SpotLight(0xffffff, 1, 1000, Math.PI / 2);
+var sunLight = new THREE.SpotLight(0xffffff, 1, 1000, Math.PI / 4);
 sunLight.position.set(0, 10, 0);
 sunLight.name = 'Sun';
+
+let sunLightHelper = new THREE.SpotLightHelper(sunLight);
+
+sunLight.userData = {
+    helper: sunLightHelper
+}
 
 scene.add(sunLight);
 
@@ -76,7 +83,6 @@ sky.name = 'Sky';
 scene.add(sky);
 
 var selected = null;
-var previouslySelected = null;
 var objectName = true;
 
 var sphereGeometry = new THREE.SphereGeometry(1);
@@ -84,7 +90,7 @@ var sphereMaterial = new THREE.MeshNormalMaterial();
 var sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
 
 sphere.position.set(0, 0, 0);
-sphere.name = "Sphere1"
+sphere.name = "Sphere1";
 scene.add(sphere);
 
 var sphereOutlineGeometry = new THREE.MeshBasicMaterial({color: 0xff0000, side: THREE.BackSide});
@@ -561,7 +567,7 @@ function select(thing=''){
                     thing['hidden']['outline'].visible = false;
                 }
 
-                if(Object.keys(selected.userData).length > 0){
+                if(Object.keys(selected.userData).length > 0 && selected.userData.outline != undefined){
                     selected.userData.outline.visible = false;
                 }
             }
@@ -583,12 +589,31 @@ function select(thing=''){
                 thing['hidden']['outline'].visible = false;
             }
 
-            if(selected != null && Object.keys(selected.userData).length > 0){
+            if(selected != null && Object.keys(selected.userData).length > 0 && selected.userData.outline != undefined){
                 selected.userData.outline.visible = false;
             }
 
             thing['hidden']['selected'] = false;
             selected = null;
+        }
+    }
+
+    if(selected != null){
+        if(selected.type == 'SpotLight'){
+            scene.add(selected.userData.helper);
+        } else {
+            
+            for(let i = 0; i < projectData.length; i++){
+                if(projectData[i]['object'].type == 'SpotLight'){
+                    scene.remove(projectData[i]['object'].userData.helper);
+                }
+            }
+        }
+    } else {
+        for(let i = 0; i < projectData.length; i++){
+            if(projectData[i]['object'].type == 'SpotLight'){
+                scene.remove(projectData[i]['object'].userData.helper);
+            }
         }
     }
 }
@@ -770,7 +795,7 @@ function updateProperties(){ //Properties options
             </th>\
             `;
 
-            if (selected.type == 'Mesh'){
+            if (selected.type == 'Mesh' && selected.material.type != 'MeshNormalMaterial'){
                 let color = rgbToHex(parseInt(selected.material.color.r * 255), parseInt(selected.material.color.g * 255), parseInt(selected.material.color.b * 255))
                 document.getElementById("color_input_div").innerHTML = `<input type="color" value="${color}" id="color_input" oninput="changeColorProperty();">`;
             } else if (selected.type == 'SpotLight' || selected.type == 'AmbientLight'){
@@ -828,10 +853,12 @@ function updateProperties(){ //Properties options
                 } else if (selected.material.type == "MeshStandardMaterial" || selected.material.type == "MeshLambertMaterial"){
                     material_dropdown.value = 'standard';
                 } else {
-                    material_dropdown.value = 'metal'
+                    material_dropdown.value = 'metal';
                 }
             }
         }
+
+    //Spotlight helper
 
     //If nothing is selected show nothing
     } else {
