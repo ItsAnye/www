@@ -1,11 +1,9 @@
 /*
 Todo:
 Make a test feature which runs an iframe (or smth), seperate from visual editor (the thing you see while editing)!
-Lights selection in explorer - Only show position, color, and intensity for some lights. For ambient, just color and intensity.
 Lights selection in explorer - maybe show three.js light helpers for non ambient lights
 
 Bugs:
-If you select an object in 'World', and then select ambient, it will show everything. If you deselect and select it again it will fix again.
 */
 
 //Path: Projects/USER/PROJECT_NAME/
@@ -746,18 +744,24 @@ function updateProperties(){ //Properties options
                 document.getElementById('scaleInputX').value = selected.scale.x;
                 document.getElementById('scaleInputY').value = selected.scale.y;
                 document.getElementById('scaleInputZ').value = selected.scale.z;
+            } else {
+                document.getElementById('scale_row').innerHTML = '';
             }
+        } else {
+            document.getElementById('position_row').innerHTML = '';
+            document.getElementById('rotation_row').innerHTML = '';
+            document.getElementById('scale_row').innerHTML = '';
         }
 
         //Color row
-        if(selected.type == "Mesh") {
+        if(selected.type == "Mesh" || selected.type == 'AmbientLight' || selected.type == 'SpotLight') {
             document.getElementById('color_row').innerHTML = `<th class='center'>Color</th>` + `\
             <th>\
                 <form onsubmit='return changeProperties(event, selected)'>\
                     <div class='row'>\
                         <div class='form-group properties_color_row'>\
                             <div style='overflow: hidden;' id="color_input_div">\
-                                
+
                             </div>\
                             <div style='height: 10px;'></div>\
                         </div>\
@@ -766,41 +770,66 @@ function updateProperties(){ //Properties options
             </th>\
             `;
 
-            if ("color" in selected.material){
+            if (selected.type == 'Mesh'){
                 let color = rgbToHex(parseInt(selected.material.color.r * 255), parseInt(selected.material.color.g * 255), parseInt(selected.material.color.b * 255))
+                document.getElementById("color_input_div").innerHTML = `<input type="color" value="${color}" id="color_input" oninput="changeColorProperty();">`;
+            } else if (selected.type == 'SpotLight' || selected.type == 'AmbientLight'){
+                let color = rgbToHex(parseInt(selected.color.r * 255), parseInt(selected.color.g * 255), parseInt(selected.color.b * 255))
                 document.getElementById("color_input_div").innerHTML = `<input type="color" value="${color}" id="color_input" oninput="changeColorProperty();">`;
             } else {
                 document.getElementById("color_input_div").innerHTML = '<b>Please change your material to use colors.</b>';
             }
 
-            //Material row
-            document.getElementById('material_row').innerHTML = `<th class='center'>Material</th>` + `\
-            <th>\
-                <div class='row'>\
-                    <div class='form-group properties_material_row'>\
-                        <div style='overflow: hidden;' id="material_dropdown_div">\
-                            <select id="material_dropdown" onchange="changeMaterialProperty();">\
-                                <option value="standard">Standard</option>\
-                                <option value="basic">Basic</option>\
-                                <option value="rainbow">Rainbow</option>\
-                                <option value="metal">Metal</option>\
-                            </select>\
+            if(selected.type == 'Mesh'){
+                //Material row
+                document.getElementById('material_row').innerHTML = `<th class='center'>Material</th>` + `\
+                <th>\
+                    <div class='row'>\
+                        <div class='form-group properties_material_row'>\
+                            <div style='overflow: hidden;' id="material_dropdown_div">\
+                                <select id="material_dropdown" onchange="changeMaterialProperty();">\
+                                    <option value="standard">Standard</option>\
+                                    <option value="basic">Basic</option>\
+                                    <option value="rainbow">Rainbow</option>\
+                                    <option value="metal">Metal</option>\
+                                </select>\
+                            </div>\
+                            <div style='height: 10px;'></div>\
                         </div>\
-                        <div style='height: 10px;'></div>\
                     </div>\
-                </div>\
-            </th>\
-            `;
-
-            const material_dropdown = document.getElementById('material_dropdown');
-            if (selected.material.type == "MeshNormalMaterial"){
-                material_dropdown.value = 'rainbow';
-            } else if (selected.material.type == "MeshBasicMaterial"){
-                material_dropdown.value = 'basic';
-            } else if (selected.material.type == "MeshStandardMaterial" || selected.material.type == "MeshLambertMaterial"){
-                material_dropdown.value = 'standard';
+                </th>\
+                `;
             } else {
-                material_dropdown.value = 'metal'
+                document.getElementById('material_row').innerHTML = '';
+            }
+
+            //Intensity Row
+            if(selected.type == 'SpotLight' || selected.type == 'AmbientLight'){
+                document.getElementById('intensity_row').innerHTML = `<th class='center'>Intensity</th>` + `\
+                <th>\
+                    <div class='row'>\
+                        <div class='form-group properties_intensity_row'>\
+                            <div style='overflow: hidden;' id="intensity_slider_div">\
+                                <input type="range" min="0" max="500" value="${selected.intensity * 100}" class="slider" id="intensity_slider" oninput="changeIntensityProperty();">
+                            </div>\
+                            <div style='height: 10px;'></div>\
+                        </div>\
+                    </div>\
+                </th>\
+                `;
+            }
+
+            if(selected.type == 'Mesh'){
+                const material_dropdown = document.getElementById('material_dropdown');
+                if (selected.material.type == "MeshNormalMaterial"){
+                    material_dropdown.value = 'rainbow';
+                } else if (selected.material.type == "MeshBasicMaterial"){
+                    material_dropdown.value = 'basic';
+                } else if (selected.material.type == "MeshStandardMaterial" || selected.material.type == "MeshLambertMaterial"){
+                    material_dropdown.value = 'standard';
+                } else {
+                    material_dropdown.value = 'metal'
+                }
             }
         }
 
@@ -820,20 +849,27 @@ function changeProperties(e, sel){
     //Name row
     sel.name = document.getElementById('nameInput').value;
 
-    //Position row
-    sel.position.x = document.getElementById('positionInputX').value;
-    sel.position.y = document.getElementById('positionInputY').value;
-    sel.position.z = document.getElementById('positionInputZ').value;
+    if(sel.type != 'AmbientLight'){
+        //Position row
+        sel.position.x = document.getElementById('positionInputX').value;
+        sel.position.y = document.getElementById('positionInputY').value;
+        sel.position.z = document.getElementById('positionInputZ').value;
 
-    //Rotation row
-    sel.rotation.x = degrees_to_radians(document.getElementById('rotationInputX').value);
-    sel.rotation.y = degrees_to_radians(document.getElementById('rotationInputY').value);
-    sel.rotation.z = degrees_to_radians(document.getElementById('rotationInputZ').value);
+        //Rotation row
+        sel.rotation.x = degrees_to_radians(document.getElementById('rotationInputX').value);
+        sel.rotation.y = degrees_to_radians(document.getElementById('rotationInputY').value);
+        sel.rotation.z = degrees_to_radians(document.getElementById('rotationInputZ').value);
 
-    //Scale row
-    sel.scale.x = document.getElementById('scaleInputX').value;
-    sel.scale.y = document.getElementById('scaleInputY').value;
-    sel.scale.z = document.getElementById('scaleInputZ').value;
+        if(sel.type != 'SpotLight'){
+            //Scale row
+            sel.scale.x = document.getElementById('scaleInputX').value;
+            sel.scale.y = document.getElementById('scaleInputY').value;
+            sel.scale.z = document.getElementById('scaleInputZ').value;
+        }
+    } else {
+        document.getElementById('position_row').innerHTML = '';
+        document.getElementById('rotation_row').innerHTML = '';
+    }
 
     //Color row in changeColorProperty() because there is no e.preventDefault();
     //Material row in changeColorProperty() because there is no e.preventDefault();
@@ -854,7 +890,12 @@ function changeProperties(e, sel){
 
 function changeColorProperty(color='') {
     if(color == ''){
-        selected.material.color.setHex("0x" + String(document.getElementById('color_input').value).substring(1))
+        if(selected.type == 'Mesh'){
+            selected.material.color.setHex("0x" + String(document.getElementById('color_input').value).substring(1))
+        } else if(selected.type == 'SpotLight' || selected.type == 'AmbientLight'){
+            selected.color.setHex("0x" + String(document.getElementById('color_input').value).substring(1))
+        }
+        
     } else {
         return "0x" + String(color).substring(1)
     }
@@ -892,6 +933,10 @@ function changeMaterialProperty() {
         let color = rgbToHex(parseInt(selected.material.color.r * 255), parseInt(selected.material.color.g * 255), parseInt(selected.material.color.b * 255))
         document.getElementById("color_input_div").innerHTML = `<input type="color" value="${color}" id="color_input" oninput="changeColorProperty();">`;
     }
+}
+
+function changeIntensityProperty(){
+    selected.intensity = document.getElementById('intensity_slider').value / 100;
 }
 
 //Incrementing
