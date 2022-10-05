@@ -1,10 +1,8 @@
 /*
 Todo:
 Make a test feature which runs an iframe (or smth), seperate from visual editor (the thing you see while editing)!
-Lights selection in explorer - maybe show three.js light helpers for non ambient lights
 
 Bugs:
-WEIRD THINGS HAPPENING WITH POSITION AND ROTATION FOR SPOTLIGHT HELPER
 */
 
 //Path: Projects/USER/PROJECT_NAME/
@@ -682,51 +680,6 @@ function updateProperties(){ //Properties options
             document.getElementById('positionInputY').value = selected.position.y;
             document.getElementById('positionInputZ').value = selected.position.z;
 
-            //Rotation row
-            document.getElementById('rotation_row').innerHTML = `<th class='center'>Rotation</th>` + `\
-            <th>\
-                <form onsubmit='return changeProperties(event, selected)'>\
-                    <div class='row'>\
-                        <div class='form-group properties_rotation_row'>\
-                            <label class='properties_label' for='rotationInputX' style='margin-top: 6px;'>x:&nbsp;&nbsp;</label>\
-                            <button class='btn increment-button' onmouseup='incrementStats("rot", "minus", "x")'><i class='fas fa-minus increment-icon'></i></button>\
-                            <button class='btn increment-button increment-button-plus' onmouseup='incrementStats("rot", "plus", "x")'><i class='fas fa-plus increment-icon'></i></button>\
-                            <div style='overflow: hidden;'>\
-                                <span><input type='number' onwheel='this.blur()' class='form-control properties_input' autocomplete='off' id='rotationInputX'></span>\
-                            </div>\
-                            <div style='height: 10px;'></div>\
-                        </div>\
-                    </div>\
-                </form>\
-                \
-                <form onsubmit='return changeProperties(event, selected)'>\
-                    <div class='row'>\
-                        <div class='form-group properties_rotation_row'>\
-                            <label class='properties_label' for='rotationInputY' style='margin-top: 6px;'>y:&nbsp;&nbsp;</label>\
-                            <button class='btn increment-button' onmouseup='incrementStats("rot", "minus", "y")'><i class='fas fa-minus increment-icon'></i></button>\
-                            <button class='btn increment-button increment-button-plus' onmouseup='incrementStats("rot", "plus", "y")'><i class='fas fa-plus increment-icon'></i></button>\
-                            <span><input type='number' onwheel='this.blur()' class='form-control properties_input' autocomplete='off' id='rotationInputY'></span>\
-                            <div style='height: 10px;'></div>\
-                        </div>\
-                    </div>\
-                </form>\
-                \
-                <form onsubmit='return changeProperties(event, selected)'>\
-                    <div class='row'>\
-                        <div class='form-group properties_rotation_row'>\
-                            <label class='properties_label' for='rotationInputZ' style='margin-top: 6px;'>z:&nbsp;&nbsp;</label>\
-                            <button class='btn increment-button' onmouseup='incrementStats("rot", "minus", "z")'><i class='fas fa-minus increment-icon'></i></button>\
-                            <button class='btn increment-button increment-button-plus' onmouseup='incrementStats("rot", "plus", "z")'><i class='fas fa-plus increment-icon'></i></button>\
-                            <span><input type='number' onwheel='this.blur()' class='form-control properties_input' autocomplete='off' id='rotationInputZ'></span>\
-                        </div>\
-                    </div>\
-                </form>\
-            </th>\
-            `;
-            document.getElementById('rotationInputX').value = radians_to_degrees(selected.rotation.x); //Needs to be converted to radians (user will see degrees).
-            document.getElementById('rotationInputY').value = radians_to_degrees(selected.rotation.y);
-            document.getElementById('rotationInputZ').value = radians_to_degrees(selected.rotation.z);
-
             if(selected.type != 'SpotLight'){
                 //Scale row
                 document.getElementById('scale_row').innerHTML = `<th class='center'>Scale</th>` + `\
@@ -772,6 +725,51 @@ function updateProperties(){ //Properties options
                 document.getElementById('scaleInputX').value = selected.scale.x;
                 document.getElementById('scaleInputY').value = selected.scale.y;
                 document.getElementById('scaleInputZ').value = selected.scale.z;
+
+                //Rotation row
+                document.getElementById('rotation_row').innerHTML = `<th class='center'>Rotation</th>` + `\
+                <th>\
+                    <form onsubmit='return changeProperties(event, selected)'>\
+                        <div class='row'>\
+                            <div class='form-group properties_rotation_row'>\
+                                <label class='properties_label' for='rotationInputX' style='margin-top: 6px;'>x:&nbsp;&nbsp;</label>\
+                                <button class='btn increment-button' onmouseup='incrementStats("rot", "minus", "x")'><i class='fas fa-minus increment-icon'></i></button>\
+                                <button class='btn increment-button increment-button-plus' onmouseup='incrementStats("rot", "plus", "x")'><i class='fas fa-plus increment-icon'></i></button>\
+                                <div style='overflow: hidden;'>\
+                                    <span><input type='number' onwheel='this.blur()' class='form-control properties_input' autocomplete='off' id='rotationInputX'></span>\
+                                </div>\
+                                <div style='height: 10px;'></div>\
+                            </div>\
+                        </div>\
+                    </form>\
+                    \
+                    <form onsubmit='return changeProperties(event, selected)'>\
+                        <div class='row'>\
+                            <div class='form-group properties_rotation_row'>\
+                                <label class='properties_label' for='rotationInputY' style='margin-top: 6px;'>y:&nbsp;&nbsp;</label>\
+                                <button class='btn increment-button' onmouseup='incrementStats("rot", "minus", "y")'><i class='fas fa-minus increment-icon'></i></button>\
+                                <button class='btn increment-button increment-button-plus' onmouseup='incrementStats("rot", "plus", "y")'><i class='fas fa-plus increment-icon'></i></button>\
+                                <span><input type='number' onwheel='this.blur()' class='form-control properties_input' autocomplete='off' id='rotationInputY'></span>\
+                                <div style='height: 10px;'></div>\
+                            </div>\
+                        </div>\
+                    </form>\
+                    \
+                    <form onsubmit='return changeProperties(event, selected)'>\
+                        <div class='row'>\
+                            <div class='form-group properties_rotation_row'>\
+                                <label class='properties_label' for='rotationInputZ' style='margin-top: 6px;'>z:&nbsp;&nbsp;</label>\
+                                <button class='btn increment-button' onmouseup='incrementStats("rot", "minus", "z")'><i class='fas fa-minus increment-icon'></i></button>\
+                                <button class='btn increment-button increment-button-plus' onmouseup='incrementStats("rot", "plus", "z")'><i class='fas fa-plus increment-icon'></i></button>\
+                                <span><input type='number' onwheel='this.blur()' class='form-control properties_input' autocomplete='off' id='rotationInputZ'></span>\
+                            </div>\
+                        </div>\
+                    </form>\
+                </th>\
+                `;
+                document.getElementById('rotationInputX').value = radians_to_degrees(selected.rotation.x); //Needs to be converted to radians (user will see degrees).
+                document.getElementById('rotationInputY').value = radians_to_degrees(selected.rotation.y);
+                document.getElementById('rotationInputZ').value = radians_to_degrees(selected.rotation.z);
             } else {
                 document.getElementById('scale_row').innerHTML = '';
             }
