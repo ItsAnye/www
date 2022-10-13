@@ -1,8 +1,11 @@
 /*
 Todo:
 Make a test feature which runs an iframe (or smth), seperate from visual editor (the thing you see while editing)!
+Insert Spotlights
+Spotlight "fine line" property
 
 Bugs:
+Outline shows when changing opacity
 */
 
 //Path: Projects/USER/PROJECT_NAME/
@@ -23,9 +26,7 @@ let posIncrement = 5;
 let rotIncrement = 20;
 let sclIncrement = 1;
 
-camera.position.x = 0;
-camera.position.y = 0;
-camera.position.z = -5;
+camera.position.set(0, 0, -5);
 camera.lookAt(0, 0, 0);
 
 renderer.setClearColor(0x87CEEB);
@@ -645,7 +646,7 @@ function updateProperties(){ //Properties options
                             <button class='btn increment-button' onmouseup='incrementStats("pos", "minus", "x")'><i class='fas fa-minus increment-icon'></i></button>\
                             <button class='btn increment-button increment-button-plus' onmouseup='incrementStats("pos", "plus", "x")'><i class='fas fa-plus increment-icon'></i></button>\
                             <div style='overflow: hidden;'>\
-                                <span><input type='number' onwheel='this.blur()' class='form-control properties_input' autocomplete='off' id='positionInputX'></span>\
+                                <span><input type='number' step=".01" onwheel='this.blur()' class='form-control properties_input' autocomplete='off' id='positionInputX'></span>\
                             </div>\
                             <div style='height: 10px;'></div>\
                         </div>\
@@ -658,7 +659,7 @@ function updateProperties(){ //Properties options
                             <label class='properties_label' for='positionInputY' style='margin-top: 6px;'>y:&nbsp;&nbsp;</label>\
                             <button class='btn increment-button' onmouseup='incrementStats("pos", "minus", "y")'><i class='fas fa-minus increment-icon'></i></button>\
                             <button class='btn increment-button increment-button-plus' onmouseup='incrementStats("pos", "plus", "y")'><i class='fas fa-plus increment-icon'></i></button>\
-                            <span><input type='number' onwheel='this.blur()' class='form-control properties_input' autocomplete='off' id='positionInputY'></span>\
+                            <span><input type='number' step=".01" onwheel='this.blur()' class='form-control properties_input' autocomplete='off' id='positionInputY'></span>\
                             <div style='height: 10px;'></div>\
                         </div>\
                     </div>\
@@ -670,7 +671,7 @@ function updateProperties(){ //Properties options
                         <label class='properties_label' for='positionInputZ' style='margin-top: 6px;'>z:&nbsp;&nbsp;</label>\
                         <button class='btn increment-button' onmouseup='incrementStats("pos", "minus", "z")'><i class='fas fa-minus increment-icon'></i></button>\
                         <button class='btn increment-button increment-button-plus' onmouseup='incrementStats("pos", "plus", "z")'><i class='fas fa-plus increment-icon'></i></button>\
-                        <span><input type='number' onwheel='this.blur()' class='form-control properties_input' autocomplete='off' id='positionInputZ'></span>\
+                        <span><input type='number' step=".01" onwheel='this.blur()' class='form-control properties_input' autocomplete='off' id='positionInputZ'></span>\
                     </div>\
                 </div>\
             </form>\
@@ -691,7 +692,7 @@ function updateProperties(){ //Properties options
                                 <button class='btn increment-button' onmouseup='incrementStats("scl", "minus", "x")'><i class='fas fa-minus increment-icon'></i></button>\
                                 <button class='btn increment-button increment-button-plus' onmouseup='incrementStats("scl", "plus", "x")'><i class='fas fa-plus increment-icon'></i></button>\
                                 <div style='overflow: hidden;'>\
-                                    <span><input type='number' onwheel='this.blur()' class='form-control properties_input' autocomplete='off' id='scaleInputX'></span>\
+                                    <span><input type='number' step=".01" onwheel='this.blur()' class='form-control properties_input' autocomplete='off' id='scaleInputX'></span>\
                                 </div>\
                                 <div style='height: 10px;'></div>\
                             </div>\
@@ -704,7 +705,7 @@ function updateProperties(){ //Properties options
                                 <label class='properties_label' for='scaleInputY' style='margin-top: 6px;'>y:&nbsp;&nbsp;</label>\
                                 <button class='btn increment-button' onmouseup='incrementStats("scl", "minus", "y")'><i class='fas fa-minus increment-icon'></i></button>\
                                 <button class='btn increment-button increment-button-plus' onmouseup='incrementStats("scl", "plus", "y")'><i class='fas fa-plus increment-icon'></i></button>\
-                                <span><input type='number' onwheel='this.blur()' class='form-control properties_input' autocomplete='off' id='scaleInputY'></span>\
+                                <span><input type='number' step=".01" onwheel='this.blur()' class='form-control properties_input' autocomplete='off' id='scaleInputY'></span>\
                                 <div style='height: 10px;'></div>\
                             </div>\
                         </div>\
@@ -716,7 +717,7 @@ function updateProperties(){ //Properties options
                                 <label class='properties_label' for='scaleInputZ' style='margin-top: 6px;'>z:&nbsp;&nbsp;</label>\
                                 <button class='btn increment-button' onmouseup='incrementStats("scl", "minus", "z")'><i class='fas fa-minus increment-icon'></i></button>\
                                 <button class='btn increment-button increment-button-plus' onmouseup='incrementStats("scl", "plus", "z")'><i class='fas fa-plus increment-icon'></i></button>\
-                                <span><input type='number' onwheel='this.blur()' class='form-control properties_input' autocomplete='off' id='scaleInputZ'></span>\
+                                <span><input type='number' step=".01" onwheel='this.blur()' class='form-control properties_input' autocomplete='off' id='scaleInputZ'></span>\
                             </div>\
                         </div>\
                     </form>\
@@ -843,6 +844,25 @@ function updateProperties(){ //Properties options
                     </div>\
                 </th>\
                 `;
+            } else {
+                document.getElementById('intensity_row').innerHTML = '';
+            }
+
+            if(selected.type == 'Mesh'){
+                document.getElementById('opacity_row').innerHTML = `<th class='center'>Opacity</th>` + `\
+                <th>\
+                    <div class='row'>\
+                        <div class='form-group properties_opacity_row'>\
+                            <div style='overflow: hidden;' id="opacity_slider_div">\
+                                <input type="range" step="0.1" min="0" max="1" value="${selected.material.opacity}" class="slider" id="opacity_slider" oninput="changeOpacityProperty();">
+                            </div>\
+                            <div style='height: 10px;'></div>\
+                        </div>\
+                    </div>\
+                </th>\
+                `;
+            } else {
+                document.getElementById('opacity_row').innerHTML = '';
             }
 
             if(selected.type == 'Mesh'){
@@ -965,6 +985,11 @@ function changeMaterialProperty() {
 
 function changeIntensityProperty(){
     selected.intensity = document.getElementById('intensity_slider').value / 100;
+}
+
+function changeOpacityProperty(){
+    selected.material.transparent = true;
+    selected.material.opacity = document.getElementById('opacity_slider').value;
 }
 
 //Incrementing
