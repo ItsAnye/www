@@ -1,0 +1,47 @@
+body {
+    margin: 0;
+    overflow: hidden;
+}
+
+#presents {
+    position: absolute;
+    top: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Gemunu Libre';
+    letter-spacing: 3px;
+    transition: all 1s ease-in-out;
+    opacity: 0;
+    font-size: 40px;
+}
+
+#name {
+    position: absolute;
+    top: 120px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Gemunu Libre';
+    letter-spacing: 3px;
+    transition: all 1s ease-in-out;
+    opacity: 0;
+    font-size: 100px;
+}
+
+#fish {
+    position: absolute;
+    top: 50%;
+    width: 50%;
+    height: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(98, 235, 98);
+    border-radius: 20px;
+    font-family: 'Gemunu Libre';
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+#fish h2:nth-child(2) {
+    font-size: 40px;
+    line-height: 20%;
+}
