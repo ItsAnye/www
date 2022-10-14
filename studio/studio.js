@@ -2,6 +2,7 @@
 Todo:
 GET RID OF ALL JAVASCRIPT HTML - USE HTML THAT IS HIDDEN, JAVASCRIPT JUST TO TRIGGER
 Make a test feature which runs an iframe (or smth), seperate from visual editor (the thing you see while editing)!
+Insert Sphere
 Insert Spotlights
 Spotlight "fine line" property
 For insert object, create a dropdown menu rather than custom div -_-
