@@ -1,11 +1,16 @@
 /*
 Todo:
+GET RID OF ALL JAVASCRIPT HTML - USE HTML THAT IS HIDDEN, JAVASCRIPT JUST TO TRIGGER
 Make a test feature which runs an iframe (or smth), seperate from visual editor (the thing you see while editing)!
 Insert Spotlights
 Spotlight "fine line" property
+For insert object, create a dropdown menu rather than custom div -_-
+Edit tab should only work if there is a rig loaded AND selected, not just loaded
 
 Bugs:
 Outline shows when changing opacity
+Fix Background color on buttons in header
+When Rig is loaded, edit tab color slider doesn't change rig skin color
 */
 
 //Path: Projects/USER/PROJECT_NAME/
@@ -175,21 +180,7 @@ function changeTab(evt, tab){
     document.getElementById(tab).style.display = "block";
     evt.currentTarget.className += " active";
 
-    if(tab == 'home'){
-        document.getElementById(tab).innerHTML = "\
-        <button id='select_btn' class='center btn menu_btn buttonDefaultSize' onClick='tool = \"Select\"; document.getElementById(\"select_btn\").style.backgroundColor = \"darkgrey\"';>Select</button>\
-        <button id='move_btn' class='center btn menu_btn buttonDefaultSize'>Move</button>\
-        ";
-    } else if(tab == 'insert'){
-        document.getElementById(tab).innerHTML = "\
-        <button id='newScript_btn' class='center btn menu_btn buttonDefaultSize' onClick='document.getElementById(\"newScript_btn\").style.backgroundColor = \"darkgrey\"'>New Script</button>\
-        <button id='newMesh_btn' class='center btn dropdown_btn buttonDefaultSize' onClick='createObject(lastObjectCreated); document.getElementById(\"newMesh_btn\").style.backgroundColor = \"darkgrey\"'>Mesh</button>\
-        <button id='newMeshDropdown_btn' class='center btn dropdown_arw buttonDefaultSize' onClick='newObjectDropdown(); document.getElementById(\"newMeshDropdown_btn\").style.backgroundColor = \"darkgrey\"'>\
-        <i class='fas fa-arrow-down'></i>\
-        </button>\
-        <button id='insertRig_btn' class='center btn menu_btn buttonDefaultSize' onClick='insertRig(); tool = \"Insert Rig\"; document.getElementById(\"insertRig_btn\").style.backgroundColor = \"darkgrey\"';>Insert Rig</button>\
-        ";
-    } else if(tab == 'edit'){
+    if(tab == 'edit'){
         if(loadedRig != undefined){
             document.getElementById(tab).innerHTML = "\
             <label for='torso'>\
@@ -197,18 +188,8 @@ function changeTab(evt, tab){
         } else {
             document.getElementById(tab).innerHTML = "Please load a rig first!"
         }
-    } else if(tab == 'terrain'){
-        document.getElementById(tab).innerHTML = "\
-        <button id='editTerrain_btn' class='center btn menu_btn buttonDefaultSize' onClick='tool = \"Edit Terrain\"; document.getElementById(\"editTerrain_btn\").style.backgroundColor = \"darkgrey\"';>Edit</button>\
-        ";
-    } else if(tab == 'animate'){
-        document.getElementById(tab).innerHTML = `\
-        <button id='animateRig_btn' class='center btn menu_btn buttonDefaultSize' onClick='tool = \"Animate Rig\"; document.getElementById(\"animateRig_btn\").style.backgroundColor = \"darkgrey\"';>Animate Rig</button>\
-        `
-    } else if(tab == 'test'){
-        document.getElementById(tab).innerHTML = `\
-        <button id='play_btn' class='center btn menu_btn buttonDefaultSize' onClick='tool = \"Play\"; test_iframe(); document.getElementById(\"play_btn\").style.backgroundColor = \"darkgrey\"';>Play</button>\
-        `
+    } else {
+        document.getElementById(tab).style.display = 'block';
     }
 
     var all = document.getElementsByClassName('tablinks');

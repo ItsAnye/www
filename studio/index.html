@@ -49,11 +49,28 @@
                 <button id='move_btn' class='menu_tablinks btn menu_btn buttonDefaultSize' onClick="tool = 'Move'; document.getElementById('move_btn').style.backgroundColor = 'darkgrey';">Move</button>
             </div>
 
-            <div id="insert" class="tabcontent"></div>
-            <div id="terrain" class="tabcontent"></div>
-            <div id="edit" class="tabcontent"></div>
-            <div id="animate" class="tabcontent"></div>
-            <div id="test" class="tabcontent"></div>
+            <div id="insert" class="tabcontent" style="display: none;">
+                <button id='newScript_btn' class='center btn menu_btn buttonDefaultSize' onClick='document.getElementById("newScript_btn").style.backgroundColor = "darkgrey"'>New Script</button>
+                <button id='newMesh_btn' class='center btn dropdown_btn buttonDefaultSize' onClick='createObject(lastObjectCreated); document.getElementById("newMesh_btn").style.backgroundColor = "darkgrey"'>Mesh</button>
+                <button id='newMeshDropdown_btn' class='center btn dropdown_arw buttonDefaultSize' onClick='newObjectDropdown(); document.getElementById("newMeshDropdown_btn").style.backgroundColor = "darkgrey"'>
+                    <i class='fas fa-arrow-down'></i>
+                </button>
+                <button id='insertRig_btn' class='center btn menu_btn buttonDefaultSize' onClick='insertRig(); tool = "Insert Rig"; document.getElementById("insertRig_btn").style.backgroundColor = "darkgrey"'>Insert Rig</button>
+            </div>
+
+            <div id="edit" class="tabcontent" style="display: none;"></div>
+
+            <div id="terrain" class="tabcontent" style="display: none;">
+                <button id='editTerrain_btn' class='center btn menu_btn buttonDefaultSize' onClick='tool = "Edit Terrain"; document.getElementById("editTerrain_btn").style.backgroundColor = "darkgrey"'>Edit</button>
+            </div>
+
+            <div id="animate" class="tabcontent" style="display: none;">
+                <button id='animateRig_btn' class='center btn menu_btn buttonDefaultSize' onClick='tool = "Animate Rig"; document.getElementById("animateRig_btn").style.backgroundColor = "darkgrey"'>Animate Rig</button>
+            </div>
+
+            <div id="test" class="tabcontent" style="display: none;">
+                <button id='play_btn' class='center btn menu_btn buttonDefaultSize' onClick='tool = "Play"; test_iframe(); document.getElementById("play_btn").style.backgroundColor = "darkgrey"'>Play</button>
+            </div>
 
             <div id="INSERTnewObjectDropdown" class="ui">
                 <button class="insertMeshOpt" id="insertCube" onClick="createObject('Cube')">Cube</button>
