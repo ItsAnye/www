@@ -1,19 +1,3 @@
-/*
-Todo:
-GET RID OF ALL JAVASCRIPT HTML - USE HTML THAT IS HIDDEN, JAVASCRIPT JUST TO TRIGGER
-Make a test feature which runs an iframe (or smth), seperate from visual editor (the thing you see while editing)!
-Insert Sphere
-Insert Spotlights
-Spotlight "fine line" property
-For insert object, create a dropdown menu rather than custom div -_-
-Edit tab should only work if there is a rig loaded AND selected, not just loaded
-
-Bugs:
-Outline shows when changing opacity
-Fix Background color on buttons in header
-When Rig is loaded, edit tab color slider doesn't change rig skin color
-*/
-
 //Path: Projects/USER/PROJECT_NAME/
 var USER = 'Anye'; //NEEDS TO BE FED FROM MAIN API
 var PROJECT_NAME = 'MeltdownStudio'; //NEEDS TO BE FED FROM MAIN API
