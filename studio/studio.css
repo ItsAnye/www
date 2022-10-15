@@ -166,34 +166,17 @@ tr:nth-child(even) {
     background-color: #dddddd;
 }
 
-.dropdown_btn {
-    margin-top: 0px;
-    margin-left: 10px;
-    height: 40px;
-    width: 55px;
-}
-
-.dropdown_arw {
-    margin-top: 50px;
-    margin-left: -55px;
-    height: 15px;
-    width: 55px;
-    font-size: 10px;
-}
-
-#INSERTnewObjectDropdown {
-    height: 200px;
-    width: 100px;
-    background-color: rgb(238, 226, 217);
-    z-index: 100;
-    margin-top: 110px;
-    margin-left: 60px;
-    border-style: none solid solid solid;
-    display: none;
-}
-
-.insertMeshOpt {
-    width: 100%;
+#newMeshDropdown {
+    width: 50px;
+    height: 50px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+    padding-left: 2px;
+    border: none;
+    background: none;
+    margin-left: 15px;
 }
 
 #terrainEditorCanvas {

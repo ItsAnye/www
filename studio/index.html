@@ -51,10 +51,16 @@
 
             <div id="insert" class="tabcontent" style="display: none;">
                 <button id='newScript_btn' class='center btn menu_btn buttonDefaultSize' onClick='document.getElementById("newScript_btn").style.backgroundColor = "darkgrey"'>New Script</button>
-                <button id='newMesh_btn' class='center btn dropdown_btn buttonDefaultSize' onClick='createObject(lastObjectCreated); document.getElementById("newMesh_btn").style.backgroundColor = "darkgrey"'>Mesh</button>
-                <button id='newMeshDropdown_btn' class='center btn dropdown_arw buttonDefaultSize' onClick='newObjectDropdown(); document.getElementById("newMeshDropdown_btn").style.backgroundColor = "darkgrey"'>
-                    <i class='fas fa-arrow-down'></i>
-                </button>
+
+                <select name="newMeshDropdown" id="newMeshDropdown" onchange="createObject(this)">
+                    <option selected disabled hidden id="newMeshDropdownDefault">Mesh</option>
+                    <option>Sphere</option>
+                    <option>Cube</option>
+                    <option>Cylinder</option>
+                    <option>Cone</option>
+                    <option>Ring</option>
+                    <option>Pyramid</option>
+                </select>
                 <button id='insertRig_btn' class='center btn menu_btn buttonDefaultSize' onClick='insertRig(); tool = "Insert Rig"; document.getElementById("insertRig_btn").style.backgroundColor = "darkgrey"'>Insert Rig</button>
             </div>
 
@@ -70,14 +76,6 @@
 
             <div id="test" class="tabcontent" style="display: none;">
                 <button id='play_btn' class='center btn menu_btn buttonDefaultSize' onClick='tool = "Play"; test_iframe(); document.getElementById("play_btn").style.backgroundColor = "darkgrey"'>Play</button>
-            </div>
-
-            <div id="INSERTnewObjectDropdown" class="ui">
-                <button class="insertMeshOpt" id="insertCube" onClick="createObject('Cube')">Cube</button>
-                <button class="insertMeshOpt" id="insertCylinder" onClick="createObject('Cylinder')">Cylinder</button>
-                <button class="insertMeshOpt" id="insertCone" onClick="createObject('Cone')">Cone</button>
-                <button class="insertMeshOpt" id="insertRing" onClick="createObject('Ring')">Ring</button>
-                <button class="insertMeshOpt" id="insertPyramid" onClick="createObject('Pyramid')">Pyramid</button>
             </div>
         </div>
     </div>

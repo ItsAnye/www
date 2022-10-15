@@ -221,7 +221,9 @@ function newObjectDropdown(){
     };
 };
 
-function createObject(object){
+function createObject(obj){
+    let object = obj.value;
+
     if(object == 'Sphere'){
         var objectName = 'Sphere' + Math.floor(Math.random()*(999-100+1)+100);
         var objectGeometry = objectName + 'Geometry';
@@ -463,6 +465,8 @@ function createObject(object){
         document.getElementById('explorer_world_content').firstElementChild.innerHTML += `<li class="li_click_select"><i class="fa-solid fa-cube"></i>  ${objectName}</li>`;
         updateExplorerClick();
     };
+
+    document.getElementById('newMeshDropdownDefault').selected = 'true';
 };
 
 function onDocumentMouseDown(event) {
