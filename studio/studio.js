@@ -11,6 +11,7 @@ var renderer = new THREE.WebGLRenderer();
 var textureLoader = new THREE.TextureLoader();
 // var heightMap = textureLoader.load('../Textures/height.png');
 var projectData = [];
+let toUpdate = [];
 
 let posIncrement = 5;
 let rotIncrement = 20;
@@ -27,7 +28,7 @@ const controls = new THREE.OrbitControls(camera, renderer.domElement);
 controls.update();
 
 var ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
-ambientLight.name = 'Ambient';
+ambientLight.name = 'AmbientLight';
 
 scene.add(ambientLight);
 
@@ -44,9 +45,10 @@ projectData.push(
 var sunLight = new THREE.SpotLight(0xffffff, 1, 1000, Math.PI / 4);
 sunLight.position.set(0, 10, 0);
 sunLight.lookAt(0, 0, 0)
-sunLight.name = 'Sun';
+sunLight.name = 'SpotLight1';
 
 let sunLightHelper = new THREE.SpotLightHelper(sunLight);
+toUpdate.push(sunLightHelper);
 
 sunLight.userData = {
     helper: sunLightHelper
@@ -147,12 +149,16 @@ let fbxLoader = new THREE.FBXLoader();
 function render() {
     requestAnimationFrame(render);
     renderer.render(scene, camera);
-
-    sunLightHelper.update();
 };
 
 document.getElementById("scene").appendChild(renderer.domElement);
 render();
+
+let updates = setInterval(function(){
+    for(let i = 0; i < toUpdate.length; i++){
+        toUpdate[i].update();
+    }
+}, 100);
 
 //Functions
 function changeTab(evt, tab){
@@ -223,7 +229,6 @@ function newObjectDropdown(){
 
 function createObject(obj){
     let object = obj.value;
-
     if(object == 'Sphere'){
         var objectName = 'Sphere' + Math.floor(Math.random()*(999-100+1)+100);
         var objectGeometry = objectName + 'Geometry';
@@ -249,7 +254,6 @@ function createObject(obj){
 
         window[objectName].userData['outline'] = window[objectOutlineMesh];
 
-        lastObjectCreated = 'Sphere';
         projectData.push(
             {
                 object: window[objectName],
@@ -262,7 +266,7 @@ function createObject(obj){
             }
         );
 
-        document.getElementById('explorer_world_content').firstElementChild.innerHTML += `<li class="li_click_select"><i class="fa-solid fa-cube"></i>  ${objectName}</li>`;
+        document.getElementById('explorer_world_content').firstElementChild.innerHTML += `<li class="li_click_select"><i class="fa-solid fa-circle"></i>  ${objectName}</li>`;
         updateExplorerClick();
     } else if(object == 'Cube'){
         var objectName = 'Cube' + Math.floor(Math.random()*(999-100+1)+100);
@@ -289,7 +293,6 @@ function createObject(obj){
 
         window[objectName].userData['outline'] = window[objectOutlineMesh];
         
-        lastObjectCreated = 'Cube';
         projectData.push(
             {
                 object: window[objectName],
@@ -329,7 +332,6 @@ function createObject(obj){
 
         window[objectName].userData['outline'] = window[objectOutlineMesh];
 
-        lastObjectCreated = 'Cylinder';
         projectData.push(
             {
                 object: window[objectName],
@@ -342,7 +344,7 @@ function createObject(obj){
             }
         );
 
-        document.getElementById('explorer_world_content').firstElementChild.innerHTML += `<li class="li_click_select"><i class="fa-solid fa-cube"></i>  ${objectName}</li>`;
+        document.getElementById('explorer_world_content').firstElementChild.innerHTML += `<li class="li_click_select"><i class="fa-solid fa-vial"></i>  ${objectName}</li>`;
         updateExplorerClick();
     } else if(object == 'Cone'){
         var objectName = 'Cone' + Math.floor(Math.random()*(999-100+1)+100); //0-999
@@ -369,7 +371,6 @@ function createObject(obj){
 
         window[objectName].userData['outline'] = window[objectOutlineMesh];
 
-        lastObjectCreated = 'Cone';
         projectData.push(
             {
                 object: window[objectName],
@@ -382,7 +383,7 @@ function createObject(obj){
             }
         );
 
-        document.getElementById('explorer_world_content').firstElementChild.innerHTML += `<li class="li_click_select"><i class="fa-solid fa-cube"></i>  ${objectName}</li>`;
+        document.getElementById('explorer_world_content').firstElementChild.innerHTML += `<li class="li_click_select"><i class="fa-solid fa-ice-cream"></i>  ${objectName}</li>`;
         updateExplorerClick();
     } else if(object == 'Ring'){
         var objectName = 'Ring' + Math.floor(Math.random()*(999-100+1)+100); //0-999
@@ -409,7 +410,6 @@ function createObject(obj){
 
         window[objectName].userData['outline'] = window[objectOutlineMesh];
 
-        lastObjectCreated = 'Ring';
         projectData.push(
             {
                 object: window[objectName],
@@ -422,7 +422,7 @@ function createObject(obj){
             }
         );
 
-        document.getElementById('explorer_world_content').firstElementChild.innerHTML += `<li class="li_click_select"><i class="fa-solid fa-cube"></i>  ${objectName}</li>`;
+        document.getElementById('explorer_world_content').firstElementChild.innerHTML += `<li class="li_click_select"><i class="fa-solid fa-ring"></i>  ${objectName}</li>`;
         updateExplorerClick();
     } else if(object == 'Pyramid'){
         var objectName = 'Pyramid' + Math.floor(Math.random()*(999-100+1)+100); //0-999
@@ -449,7 +449,6 @@ function createObject(obj){
 
         window[objectName].userData['outline'] = window[objectOutlineMesh];
 
-        lastObjectCreated = 'Pyramid';
         projectData.push(
             {
                 object: window[objectName],
@@ -462,16 +461,54 @@ function createObject(obj){
             }
         );
 
-        document.getElementById('explorer_world_content').firstElementChild.innerHTML += `<li class="li_click_select"><i class="fa-solid fa-cube"></i>  ${objectName}</li>`;
+        document.getElementById('explorer_world_content').firstElementChild.innerHTML += `<li class="li_click_select"><i class="fa-solid fa-ice-cream"></i>  ${objectName}</li>`;
         updateExplorerClick();
     };
 
     document.getElementById('newMeshDropdownDefault').selected = 'true';
 };
 
+function createLight(obj){
+    let object = obj.value;
+
+    if(object == 'SpotLight'){
+        var objectName = 'SpotLight' + Math.floor(Math.random()*(999-100+1)+100);
+
+        window[objectName] = new THREE.SpotLight(0xffffff, 1);
+        window[objectName].name = objectName;
+
+        window[objectName].position.set(10, 0, 0);
+        scene.add(window[objectName]);
+
+        let helper = new THREE.SpotLightHelper(window[objectName]);
+
+        window[objectName].userData = {
+            helper: helper
+        }
+
+        projectData.push(
+            {
+                object: window[objectName],
+                hidden: {
+                    selected: false,
+                    selectable: false
+                }
+            }
+        );
+
+        document.getElementById('explorer_light_content').firstElementChild.innerHTML += `<li class="li_click_select"><i class="fa-solid fa-sun"></i>  ${objectName}</li>`;
+        updateExplorerClick();
+    }
+
+    document.getElementById('newLightDropdownDefault').selected = 'true';
+};
+
 function onDocumentMouseDown(event) {
     if(event.clientX <= (window.innerWidth - 300)) {
         if(tool == 'Select'){
+            for(let i = 0; i < toUpdate.length; i++){
+                scene.remove(toUpdate[i]);
+            }
             select();
         } else if(tool == 'Move') {
             console.log(projectData);
@@ -501,7 +538,11 @@ function select(thing=''){
                             }
     
                             if(Object.keys(selected.userData).length > 0){
-                                selected.userData.outline.visible = false;
+                                if(selected.userData.outline == undefined){
+                                    scene.remove(selected.userData.helper)
+                                } else {
+                                    selected.userData.outline.visible = false;
+                                }
                             }
                         }
     
@@ -523,7 +564,11 @@ function select(thing=''){
                         }
     
                         if(selected != null && Object.keys(selected.userData).length > 0){
-                            selected.userData.outline.visible = false;
+                            if(selected.userData.outline == undefined){
+                                scene.remove(selected.userData.helper);
+                            } else {
+                                selected.userData.outline.visible = false;
+                            }
                         }
     
                         projectData[i]['hidden']['selected'] = false;
@@ -572,9 +617,12 @@ function select(thing=''){
 
     if(selected != null){
         if(selected.type == 'SpotLight'){
+            for(let x=0; x < toUpdate.length; x++){
+                scene.remove(toUpdate[x]);
+                scene.remove(toUpdate[x]);
+            }
             scene.add(selected.userData.helper);
         } else {
-            
             for(let i = 0; i < projectData.length; i++){
                 if(projectData[i]['object'].type == 'SpotLight'){
                     scene.remove(projectData[i]['object'].userData.helper);
@@ -873,12 +921,12 @@ function changeProperties(e, sel){
         sel.position.y = document.getElementById('positionInputY').value;
         sel.position.z = document.getElementById('positionInputZ').value;
 
-        //Rotation row
-        sel.rotation.x = degrees_to_radians(document.getElementById('rotationInputX').value);
-        sel.rotation.y = degrees_to_radians(document.getElementById('rotationInputY').value);
-        sel.rotation.z = degrees_to_radians(document.getElementById('rotationInputZ').value);
-
         if(sel.type != 'SpotLight'){
+            //Rotation row
+            sel.rotation.x = degrees_to_radians(document.getElementById('rotationInputX').value);
+            sel.rotation.y = degrees_to_radians(document.getElementById('rotationInputY').value);
+            sel.rotation.z = degrees_to_radians(document.getElementById('rotationInputZ').value);
+
             //Scale row
             sel.scale.x = document.getElementById('scaleInputX').value;
             sel.scale.y = document.getElementById('scaleInputY').value;
@@ -1100,9 +1148,19 @@ function populateExplorer(){
 
     for(let i = 0; i < projectData.length; i++) {
         if(projectData[i].object.type == 'Mesh'){
-            document.getElementById('explorer_world_content').firstElementChild.innerHTML += `<li class="li_click_select"><i class="fa-solid fa-cube"></i>  ${projectData[i].object.name}</li>`;
+            if(projectData[i].object.geometry.type == 'SphereGeometry'){
+                document.getElementById('explorer_world_content').firstElementChild.innerHTML += `<li><i class="fa-solid fa-circle"></i>  ${projectData[i].object.name}</li>`;
+            } else if(projectData[i].object.geometry.type == 'BoxGeometry'){
+                document.getElementById('explorer_world_content').firstElementChild.innerHTML += `<li><i class="fa-solid fa-cube"></i>  ${projectData[i].object.name}</li>`;
+            } else if(projectData[i].object.geometry.type == 'CylinderGeometry'){
+                document.getElementById('explorer_world_content').firstElementChild.innerHTML += `<li><i class="fa-solid fa-vial"></i>  ${projectData[i].object.name}</li>`;
+            } else if(projectData[i].object.geometry.type == 'ConeGeometry'){
+                document.getElementById('explorer_world_content').firstElementChild.innerHTML += `<li><i class="fa-solid fa-ice-cream"></i>  ${projectData[i].object.name}</li>`;
+            } else if(projectData[i].object.geometry.type == 'TorusGeometry'){
+                document.getElementById('explorer_world_content').firstElementChild.innerHTML += `<li><i class="fa-solid fa-ring"></i>  ${projectData[i].object.name}</li>`;
+            }
         } else if(projectData[i].object.type == 'Group'){
-            document.getElementById('explorer_world_content').firstElementChild.innerHTML += `<li class="li_click_select"><i class="fa-solid fa-person"></i>  ${projectData[i].object.name}</li>`;
+            document.getElementById('explorer_world_content').firstElementChild.innerHTML += `<li><i class="fa-solid fa-person"></i>  ${projectData[i].object.name}</li>`;
         } else if(projectData[i].object.type == 'AmbientLight' || projectData[i].object.type == 'SpotLight') {
             document.getElementById('explorer_light_content').firstElementChild.innerHTML += `<li class="li_click_select"><i class="fa-solid fa-sun"></i>  ${projectData[i].object.name}</li>`;
         }

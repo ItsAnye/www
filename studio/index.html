@@ -49,10 +49,11 @@
                 <button id='move_btn' class='menu_tablinks btn menu_btn buttonDefaultSize' onClick="tool = 'Move'; document.getElementById('move_btn').style.backgroundColor = 'darkgrey';">Move</button>
             </div>
 
+            <!-- Insert -->
             <div id="insert" class="tabcontent" style="display: none;">
                 <button id='newScript_btn' class='center btn menu_btn buttonDefaultSize' onClick='document.getElementById("newScript_btn").style.backgroundColor = "darkgrey"'>New Script</button>
 
-                <select name="newMeshDropdown" id="newMeshDropdown" onchange="createObject(this)">
+                <select name="newMeshDropdown" id="newMeshDropdown" class="dropdown" onchange="createObject(this)">
                     <option selected disabled hidden id="newMeshDropdownDefault">Mesh</option>
                     <option>Sphere</option>
                     <option>Cube</option>
@@ -61,7 +62,13 @@
                     <option>Ring</option>
                     <option>Pyramid</option>
                 </select>
-                <button id='insertRig_btn' class='center btn menu_btn buttonDefaultSize' onClick='insertRig(); tool = "Insert Rig"; document.getElementById("insertRig_btn").style.backgroundColor = "darkgrey"'>Insert Rig</button>
+
+                <button id='insertRig_btn' class='center btn menu_btn buttonDefaultSize' onClick='insertRig(); tool = "Insert Rig"; document.getElementById("insertRig_btn").style.backgroundColor = "darkgrey"'>Rig</button>
+                
+                <select name="newLightDropdown" id="newLightDropdown" class="dropdown" onchange="createLight(this)">
+                    <option selected disabled hidden id="newLightDropdownDefault">Light</option>
+                    <option>SpotLight</option>
+                </select>
             </div>
 
             <div id="edit" class="tabcontent" style="display: none;"></div>
