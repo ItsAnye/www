@@ -496,7 +496,7 @@ function createLight(obj){
             }
         );
 
-        document.getElementById('explorer_light_content').firstElementChild.innerHTML += `<li class="li_click_select"><i class="fa-solid fa-sun"></i>  ${objectName}</li>`;
+        document.getElementById('explorer_light_content').firstElementChild.innerHTML += `<li class="li_click_select"><i class="fa-solid fa-sun"></i>  ${objectName} <div style="display: inline; float: right; margin-right: 20px;"><i class="fa-regular fa-hand-pointer fa-beat"></i></div></li>`;
         updateExplorerClick();
     }
 
@@ -1040,24 +1040,24 @@ function incrementStats(stat, dir, axis){
         if(dir == 'minus'){
             if(axis == 'x'){
                 var currValueX = document.getElementById('rotationInputX').value;
-                document.getElementById('rotationInputX').value = currValueX - rotIncrement;
+                document.getElementById('rotationInputX').value = (currValueX - rotIncrement) % 360;
             } else if(axis == 'y'){
                 var currValueY = document.getElementById('rotationInputY').value;
-                document.getElementById('rotationInputY').value = currValueY - rotIncrement;
+                document.getElementById('rotationInputY').value = (currValueY - rotIncrement) % 360;
             } else {
                 var currValueZ = document.getElementById('rotationInputZ').value;
-                document.getElementById('rotationInputZ').value = currValueZ - rotIncrement;
+                document.getElementById('rotationInputZ').value = (currValueZ - rotIncrement) % 360;
             }
         } else {
             if(axis == 'x'){
                 var currValueX = document.getElementById('rotationInputX').value;
-                document.getElementById('rotationInputX').value = parseInt(currValueX) + rotIncrement;
+                document.getElementById('rotationInputX').value = (parseInt(currValueX) + rotIncrement) % 360;
             } else if(axis == 'y'){
                 var currValueY = document.getElementById('rotationInputY').value;
-                document.getElementById('rotationInputY').value = parseInt(currValueY) + rotIncrement;
+                document.getElementById('rotationInputY').value = (parseInt(currValueY) + rotIncrement) % 360;
             } else {
                 var currValueZ = document.getElementById('rotationInputZ').value;
-                document.getElementById('rotationInputZ').value = parseInt(currValueZ) + rotIncrement;
+                document.getElementById('rotationInputZ').value = (parseInt(currValueZ) + rotIncrement) % 360;
             }
         }
     } else if(stat == 'scl'){
@@ -1162,7 +1162,7 @@ function populateExplorer(){
         } else if(projectData[i].object.type == 'Group'){
             document.getElementById('explorer_world_content').firstElementChild.innerHTML += `<li><i class="fa-solid fa-person"></i>  ${projectData[i].object.name}</li>`;
         } else if(projectData[i].object.type == 'AmbientLight' || projectData[i].object.type == 'SpotLight') {
-            document.getElementById('explorer_light_content').firstElementChild.innerHTML += `<li class="li_click_select"><i class="fa-solid fa-sun"></i>  ${projectData[i].object.name}</li>`;
+            document.getElementById('explorer_light_content').firstElementChild.innerHTML += `<li class="li_click_select"><i class="fa-solid fa-sun"></i>  ${projectData[i].object.name} <div style="display: inline; float: right; margin-right: 20px;"><i class="fa-regular fa-hand-pointer fa-beat"></i></div></li>`;
         }
     }
 }
