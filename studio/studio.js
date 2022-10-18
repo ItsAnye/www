@@ -518,10 +518,6 @@ function onDocumentMouseDown(event) {
     }
 };
 
-function newBuilding(){
-    document.getElementById('new_building').style.visibility = 'visible';
-}
-
 function select(thing=''){
     if(thing === ''){
         var vector = new THREE.Vector3((event.clientX / window.innerWidth) * 2 - 1, -(event.clientY / window.innerHeight) * 2 + 1, 0.5);
@@ -1205,10 +1201,49 @@ function getRandomInt(min, max) {
 //Buildings
 let lines = [];
 
+function newBuilding(){
+    document.getElementById('new_building').style.visibility = 'visible';
+
+    if(lines.length == 0){
+        for(let x = 0; x < document.getElementsByClassName('building_point').length; x++){
+            if(document.getElementById(`point${x + 1}`) == null || document.getElementById(`point${x + 1}`) == undefined){
+                let line = new LeaderLine(
+                    document.getElementById(`point${x}`),
+                    document.getElementById(`point0`),
+                    {dash: {animation: true}, startPlug: 'behind', endPlug: 'behind', path: 'straight', color: 'rgb(0, 0, 0)'}
+                );
+
+                lines.push(line);
+            } else {
+                let line = new LeaderLine(
+                    document.getElementById(`point${x}`),
+                    document.getElementById(`point${x + 1}`),
+                    {dash: {animation: true}, startPlug: 'behind', endPlug: 'behind', path: 'straight', color: 'rgb(0, 0, 0)'}
+                );
+
+                lines.push(line);
+            }
+            document.getElementById(`point${x}`) //x + 1
+        }
+    }
+}
+
 function fixLine(){
     for(let i = 0; i < lines.length; i++){
         lines[i].position();
     }
+}
+
+function removeLines(){
+    for(let i = 0; i < lines.length; i++){
+        lines[i].remove();
+    }
+    lines = [];
+}
+
+function canceled_building(elem){
+    elem.parentNode.style.visibility = 'hidden';
+    removeLines();
 }
 
 let numWalls = document.getElementById('numWalls').children[0];
@@ -1219,10 +1254,7 @@ numWalls.addEventListener("change", function() {
         numWalls.value = 3;
     }
 
-    for(let i = 0; i < lines.length; i++){
-        lines[i].remove();
-    }
-    lines = [];
+    removeLines();
 
     //Render points
     let right = document.getElementById('new_building_right')
@@ -1232,9 +1264,10 @@ numWalls.addEventListener("change", function() {
     }
 
     for(let x = 0; x < document.getElementsByClassName('building_point').length; x++){
-        document.getElementsByClassName('building_point')[x].style.left = getRandomInt(10, right.offsetWidth - 20) + 'px';
-        document.getElementsByClassName('building_point')[x].style.top = getRandomInt(10, right.offsetHeight - 20) + 'px';
-        new PlainDraggable(document.getElementsByClassName('building_point')[x], {onMove: fixLine});
+        document.getElementsByClassName('building_point')[x].style.left = Math.round(getRandomInt(10, right.offsetWidth - 20) / 30) * 30 + 'px';
+        document.getElementsByClassName('building_point')[x].style.top = Math.round(getRandomInt(10, right.offsetHeight - 20) / 30) * 30 + 'px';
+        let z = new PlainDraggable(document.getElementsByClassName('building_point')[x], {onMove: fixLine});
+        z.snap = {step: 30};
     }
 
     for(let x = 0; x < document.getElementsByClassName('building_point').length; x++){

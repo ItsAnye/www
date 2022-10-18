@@ -293,7 +293,7 @@ tr:nth-child(even) {
     height: calc(100% - 110px);
     top: 110px;
     background-color: white;
-    visibility: hidden;
+    /* visibility: hidden; */
 }
 
 #new_building h2 {
@@ -335,5 +335,21 @@ tr:nth-child(even) {
     height: 10px;
     border-radius: 50%;
     background-color: black;
+    cursor: pointer;
+}
+
+#close_btn {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background-color: red;
+    color: white;
+    text-align: center;
+    font-weight: bolder;
+    font-size: 25px;
+    line-height: 100%;
+    border-radius: 20%;
+    top: 15px;
+    right: 10px;
     cursor: pointer;
 }
