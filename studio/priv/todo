@@ -1,3 +1,8 @@
+BUILDINGS:
+Make points not random
+Add point snap to grid (Like a Coordinate Plane)
+Add an actual grid/coordiante_plane to the background
+
 Resize Explorer and Properties
 Make a test feature which runs an iframe (or smth), seperate from visual editor (the thing you see while editing)!
 When object is inserted, insert at random x + y position (integers only)

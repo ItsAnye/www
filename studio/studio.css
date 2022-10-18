@@ -286,3 +286,54 @@ tr:nth-child(even) {
 .fa-spell-check {
     color:rgb(75, 171, 48)
 }
+
+#new_building {
+    position: absolute;
+    width: calc(100% - 300px);
+    height: calc(100% - 110px);
+    top: 110px;
+    background-color: white;
+    /* visibility: hidden; */
+}
+
+#new_building h2 {
+    text-align: center;
+    margin-top: 10px;
+    border-bottom: 2px solid black;
+    padding-bottom: 10px;
+}
+
+.question {
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+#new_building_left {
+    overflow: scroll;
+}
+
+#new_building_left, #new_building_right {
+    position: absolute;
+    height: calc(100% - 61px);
+    width: 50%;
+    margin-top: -8px;
+}
+
+#new_building_right {
+    left: 50%;
+    border-left: 5px solid black;
+}
+
+.preimg {
+    margin-top: 20px;
+    width: 400px;
+}
+
+.building_point {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: black;
+    cursor: pointer;
+}

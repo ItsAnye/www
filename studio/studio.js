@@ -214,7 +214,7 @@ function insertRig() {
             }
         );
 
-        document.getElementById('explorer_world_content').firstElementChild.innerHTML += `<li class="li_click_select"><i class="fa-solid fa-person"></i>  ${mesh.name}</li>`;
+        document.getElementById('explorer_world_content').firstElementChild.innerHTML += `<li><i class="fa-solid fa-person"></i>  ${mesh.name}</li>`;
         updateExplorerClick();
     });
 };
@@ -518,6 +518,10 @@ function onDocumentMouseDown(event) {
     }
 };
 
+function newBuilding(){
+    document.getElementById('new_building').style.visibility = 'visible';
+}
+
 function select(thing=''){
     if(thing === ''){
         var vector = new THREE.Vector3((event.clientX / window.innerWidth) * 2 - 1, -(event.clientY / window.innerHeight) * 2 + 1, 0.5);
@@ -617,10 +621,12 @@ function select(thing=''){
 
     if(selected != null){
         if(selected.type == 'SpotLight'){
-            for(let x=0; x < toUpdate.length; x++){
-                scene.remove(toUpdate[x]);
-                scene.remove(toUpdate[x]);
+            for(let x = 0; x < projectData.length; x++){
+                if(projectData[x].object.userData.helper != undefined){
+                    scene.remove(projectData[x].object.userData.helper);
+                }
             }
+
             scene.add(selected.userData.helper);
         } else {
             for(let i = 0; i < projectData.length; i++){
@@ -1189,6 +1195,87 @@ function selectExplorer(name){
         }
     }
 }
+
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+//Buildings
+let lines = [];
+
+function fixLine(){
+    for(let i = 0; i < lines.length; i++){
+        lines[i].position();
+    }
+}
+
+let numWalls = document.getElementById('numWalls').children[0];
+numWalls.addEventListener("change", function() {
+    if(numWalls.value > 10){
+        numWalls.value = 10;
+    } else if(numWalls.value < 3){
+        numWalls.value = 3;
+    }
+
+    for(let i = 0; i < lines.length; i++){
+        lines[i].remove();
+    }
+    lines = [];
+
+    //Render points
+    let right = document.getElementById('new_building_right')
+    right.innerHTML = '';
+    for(let i = 0; i < numWalls.value; i++){
+        right.innerHTML += `<div class="building_point" id="point${i}"></div>`;
+    }
+
+    for(let x = 0; x < document.getElementsByClassName('building_point').length; x++){
+        document.getElementsByClassName('building_point')[x].style.left = getRandomInt(10, right.offsetWidth - 20) + 'px';
+        document.getElementsByClassName('building_point')[x].style.top = getRandomInt(10, right.offsetHeight - 20) + 'px';
+        new PlainDraggable(document.getElementsByClassName('building_point')[x], {onMove: fixLine});
+    }
+
+    for(let x = 0; x < document.getElementsByClassName('building_point').length; x++){
+        if(document.getElementById(`point${x + 1}`) == null || document.getElementById(`point${x + 1}`) == undefined){
+            let line = new LeaderLine(
+                document.getElementById(`point${x}`),
+                document.getElementById(`point0`),
+                {dash: {animation: true}, startPlug: 'behind', endPlug: 'behind', path: 'straight', color: 'rgb(0, 0, 0)'}
+            );
+
+            lines.push(line);
+        } else {
+            let line = new LeaderLine(
+                document.getElementById(`point${x}`),
+                document.getElementById(`point${x + 1}`),
+                {dash: {animation: true}, startPlug: 'behind', endPlug: 'behind', path: 'straight', color: 'rgb(0, 0, 0)'}
+            );
+
+            lines.push(line);
+        }
+        document.getElementById(`point${x}`) //x + 1
+    }
+});
+
+let wallpaper = document.getElementById('wallpaper').children[0];
+wallpaper.addEventListener('change', function(event){
+    let output = document.getElementById('wallpaper_preview');
+    output.src = URL.createObjectURL(event.target.files[0]);
+    output.onload = function() {
+        URL.revokeObjectURL(output.src);
+    }
+});
+
+let flooring = document.getElementById('flooring').children[0];
+flooring.addEventListener('change', function(event){
+    let output = document.getElementById('flooring_preview');
+    output.src = URL.createObjectURL(event.target.files[0]);
+    output.onload = function() {
+        URL.revokeObjectURL(output.src)
+      }
+});
 
 //Listeners
 document.addEventListener('mousedown', onDocumentMouseDown, false);
