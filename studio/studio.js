@@ -1,16 +1,16 @@
 //Path: Projects/USER/PROJECT_NAME/
-var USER = 'Anye'; //NEEDS TO BE FED FROM MAIN API
-var PROJECT_NAME = 'MeltdownStudio'; //NEEDS TO BE FED FROM MAIN API
+let USER = 'Anye'; //NEEDS TO BE FED FROM MAIN API
+let PROJECT_NAME = 'MeltdownStudio'; //NEEDS TO BE FED FROM MAIN API
 
-var loadedRig;
+let loadedRig;
 
-var scene = new THREE.Scene();
-var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
-var renderer = new THREE.WebGLRenderer();
+let scene = new THREE.Scene();
+let camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+let renderer = new THREE.WebGLRenderer();
 
-var textureLoader = new THREE.TextureLoader();
-// var heightMap = textureLoader.load('../Textures/height.png');
-var projectData = [];
+let textureLoader = new THREE.TextureLoader();
+// let heightMap = textureLoader.load('../Textures/height.png');
+let projectData = [];
 let toUpdate = [];
 
 let posIncrement = 5;
@@ -27,7 +27,7 @@ renderer.shadowMap.enabled = true;
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
 controls.update();
 
-var ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+let ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
 ambientLight.name = 'AmbientLight';
 
 scene.add(ambientLight);
@@ -42,7 +42,7 @@ projectData.push(
     }
 );
 
-var sunLight = new THREE.SpotLight(0xffffff, 1, 1000, Math.PI / 4);
+let sunLight = new THREE.SpotLight(0xffffff, 1, 1000, Math.PI / 4);
 sunLight.position.set(0, 10, 0);
 sunLight.lookAt(0, 0, 0)
 sunLight.name = 'SpotLight1';
@@ -67,26 +67,26 @@ projectData.push(
 );
 
 //Start
-var skyGeoemtry = new THREE.BoxGeometry(10000, 10000, 10000);
-var skyMaterial = new THREE.MeshBasicMaterial({color: 0x87CEEB, side: THREE.DoubleSide});
-var sky = new THREE.Mesh(skyGeoemtry, skyMaterial);
+let skyGeoemtry = new THREE.BoxGeometry(10000, 10000, 10000);
+let skyMaterial = new THREE.MeshBasicMaterial({color: 0x87CEEB, side: THREE.DoubleSide});
+let sky = new THREE.Mesh(skyGeoemtry, skyMaterial);
 sky.name = 'Sky';
 
 scene.add(sky);
 
-var selected = null;
-var objectName = true;
+selected = null;
+let objectName = true;
 
-var sphereGeometry = new THREE.SphereGeometry(1);
-var sphereMaterial = new THREE.MeshNormalMaterial();
-var sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
+let sphereGeometry = new THREE.SphereGeometry(1);
+let sphereMaterial = new THREE.MeshNormalMaterial();
+let sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
 
 sphere.position.set(0, 0, 0);
 sphere.name = "Sphere1";
 scene.add(sphere);
 
-var sphereOutlineGeometry = new THREE.MeshBasicMaterial({color: 0xff0000, side: THREE.BackSide});
-var sphereOutlineMesh = new THREE.Mesh(sphereGeometry, sphereOutlineGeometry);
+let sphereOutlineGeometry = new THREE.MeshBasicMaterial({color: 0xff0000, side: THREE.BackSide});
+let sphereOutlineMesh = new THREE.Mesh(sphereGeometry, sphereOutlineGeometry);
 sphereOutlineMesh.position = sphere.position;
 sphereOutlineMesh.scale.multiplyScalar(1.05);
 sphereOutlineMesh.visible = false;
@@ -106,13 +106,13 @@ projectData.push(
     }
 );
 
-var textureGrass = textureLoader.load("Images/grasslight-big.jpeg");
+let textureGrass = textureLoader.load("Images/grasslight-big.jpeg");
 textureGrass.wrapS = THREE.RepeatWrapping;
 textureGrass.wrapT = THREE.RepeatWrapping;
 textureGrass.repeat.set(10, 10);
 
-var planeGeometry = new THREE.BoxGeometry(500, 500, 1);
-var planeMaterial = new THREE.MeshStandardMaterial({
+let planeGeometry = new THREE.BoxGeometry(500, 500, 1);
+let planeMaterial = new THREE.MeshStandardMaterial({
     map: textureGrass, 
     // displacementMap: heightMap,
     displacementScale: 1,
@@ -120,7 +120,7 @@ var planeMaterial = new THREE.MeshStandardMaterial({
     depthTest: true
 });
 
-var plane = new THREE.Mesh(planeGeometry, planeMaterial);
+let plane = new THREE.Mesh(planeGeometry, planeMaterial);
 plane.receiveShadow = true;
 plane.name = 'Plane';
 
@@ -162,7 +162,7 @@ let updates = setInterval(function(){
 
 //Functions
 function changeTab(evt, tab){
-    var tabcontent = document.getElementsByClassName("tabcontent");
+    let tabcontent = document.getElementsByClassName("tabcontent");
 
     for (i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = "none";
@@ -183,8 +183,8 @@ function changeTab(evt, tab){
         document.getElementById(tab).style.display = 'block';
     }
 
-    var all = document.getElementsByClassName('tablinks');
-    for (var i = 0; i < all.length; i++) {
+    let all = document.getElementsByClassName('tablinks');
+    for (let i = 0; i < all.length; i++) {
         all[i].style.backgroundColor = 'lightgrey';
     }
     document.getElementById(tab + '_tab').style.backgroundColor = "darkgrey";
@@ -230,12 +230,12 @@ function newObjectDropdown(){
 function createObject(obj){
     let object = obj.value;
     if(object == 'Sphere'){
-        var objectName = 'Sphere' + Math.floor(Math.random()*(999-100+1)+100);
-        var objectGeometry = objectName + 'Geometry';
-        var objectMaterial = objectName + 'Material';
+        let objectName = 'Sphere' + Math.floor(Math.random()*(999-100+1)+100);
+        let objectGeometry = objectName + 'Geometry';
+        let objectMaterial = objectName + 'Material';
 
-        var objectOutlineMaterial = objectName + 'OutlineMaterial';
-        var objectOutlineMesh = objectName + 'OutlineMesh';
+        let objectOutlineMaterial = objectName + 'OutlineMaterial';
+        let objectOutlineMesh = objectName + 'OutlineMesh';
 
         window[objectGeometry] = new THREE.SphereGeometry(1);
         window[objectMaterial] = new THREE.MeshNormalMaterial();
@@ -269,12 +269,12 @@ function createObject(obj){
         document.getElementById('explorer_world_content').firstElementChild.innerHTML += `<li class="li_click_select"><i class="fa-solid fa-circle"></i>  ${objectName}</li>`;
         updateExplorerClick();
     } else if(object == 'Cube'){
-        var objectName = 'Cube' + Math.floor(Math.random()*(999-100+1)+100);
-        var objectGeometry = objectName + 'Geometry';
-        var objectMaterial = objectName + 'Material';
+        let objectName = 'Cube' + Math.floor(Math.random()*(999-100+1)+100);
+        let objectGeometry = objectName + 'Geometry';
+        let objectMaterial = objectName + 'Material';
 
-        var objectOutlineMaterial = objectName + 'OutlineMaterial';
-        var objectOutlineMesh = objectName + 'OutlineMesh';
+        let objectOutlineMaterial = objectName + 'OutlineMaterial';
+        let objectOutlineMesh = objectName + 'OutlineMesh';
 
         window[objectGeometry] = new THREE.BoxGeometry(5, 5, 5);
         window[objectMaterial] = new THREE.MeshLambertMaterial({color: 0xff0000});
@@ -308,12 +308,12 @@ function createObject(obj){
         document.getElementById('explorer_world_content').firstElementChild.innerHTML += `<li class="li_click_select"><i class="fa-solid fa-cube"></i>  ${objectName}</li>`;
         updateExplorerClick();
     } else if(object == 'Cylinder'){
-        var objectName = 'Cylinder' + Math.floor(Math.random()*(999-100+1)+100); //0-999
-        var objectGeometry = objectName + 'Geometry';
-        var objectMaterial = objectName + 'Material';
+        let objectName = 'Cylinder' + Math.floor(Math.random()*(999-100+1)+100); //0-999
+        let objectGeometry = objectName + 'Geometry';
+        let objectMaterial = objectName + 'Material';
 
-        var objectOutlineMaterial = objectName + 'OutlineMaterial';
-        var objectOutlineMesh = objectName + 'OutlineMesh';
+        let objectOutlineMaterial = objectName + 'OutlineMaterial';
+        let objectOutlineMesh = objectName + 'OutlineMesh';
 
         window[objectGeometry] = new THREE.CylinderGeometry(2, 2, 5, 32);
         window[objectMaterial] = new THREE.MeshLambertMaterial({color: 0xffff00});
@@ -347,12 +347,12 @@ function createObject(obj){
         document.getElementById('explorer_world_content').firstElementChild.innerHTML += `<li class="li_click_select"><i class="fa-solid fa-vial"></i>  ${objectName}</li>`;
         updateExplorerClick();
     } else if(object == 'Cone'){
-        var objectName = 'Cone' + Math.floor(Math.random()*(999-100+1)+100); //0-999
-        var objectGeometry = objectName + 'Geometry';
-        var objectMaterial = objectName + 'Material';
+        let objectName = 'Cone' + Math.floor(Math.random()*(999-100+1)+100); //0-999
+        let objectGeometry = objectName + 'Geometry';
+        let objectMaterial = objectName + 'Material';
 
-        var objectOutlineMaterial = objectName + 'OutlineMaterial';
-        var objectOutlineMesh = objectName + 'OutlineMesh';
+        let objectOutlineMaterial = objectName + 'OutlineMaterial';
+        let objectOutlineMesh = objectName + 'OutlineMesh';
 
         window[objectGeometry] = new THREE.ConeGeometry(2, 4, 32);
         window[objectMaterial] = new THREE.MeshLambertMaterial({color: 0x00ff00});
@@ -386,12 +386,12 @@ function createObject(obj){
         document.getElementById('explorer_world_content').firstElementChild.innerHTML += `<li class="li_click_select"><i class="fa-solid fa-ice-cream"></i>  ${objectName}</li>`;
         updateExplorerClick();
     } else if(object == 'Ring'){
-        var objectName = 'Ring' + Math.floor(Math.random()*(999-100+1)+100); //0-999
-        var objectGeometry = objectName + 'Geometry';
-        var objectMaterial = objectName + 'Material';
+        let objectName = 'Ring' + Math.floor(Math.random()*(999-100+1)+100); //0-999
+        let objectGeometry = objectName + 'Geometry';
+        let objectMaterial = objectName + 'Material';
 
-        var objectOutlineMaterial = objectName + 'OutlineMaterial';
-        var objectOutlineMesh = objectName + 'OutlineMesh';
+        let objectOutlineMaterial = objectName + 'OutlineMaterial';
+        let objectOutlineMesh = objectName + 'OutlineMesh';
 
         window[objectGeometry] = new THREE.TorusGeometry(3, 1, 16, 100);
         window[objectMaterial] = new THREE.MeshLambertMaterial({color: 0x00ffff});
@@ -425,12 +425,12 @@ function createObject(obj){
         document.getElementById('explorer_world_content').firstElementChild.innerHTML += `<li class="li_click_select"><i class="fa-solid fa-ring"></i>  ${objectName}</li>`;
         updateExplorerClick();
     } else if(object == 'Pyramid'){
-        var objectName = 'Pyramid' + Math.floor(Math.random()*(999-100+1)+100); //0-999
-        var objectGeometry = objectName + 'Geometry';
-        var objectMaterial = objectName + 'Material';
+        let objectName = 'Pyramid' + Math.floor(Math.random()*(999-100+1)+100); //0-999
+        let objectGeometry = objectName + 'Geometry';
+        let objectMaterial = objectName + 'Material';
 
-        var objectOutlineMaterial = objectName + 'OutlineMaterial';
-        var objectOutlineMesh = objectName + 'OutlineMesh';
+        let objectOutlineMaterial = objectName + 'OutlineMaterial';
+        let objectOutlineMesh = objectName + 'OutlineMesh';
 
         window[objectGeometry] = new THREE.ConeGeometry(2, 2, 4);
         window[objectMaterial] = new THREE.MeshLambertMaterial({color: 0xd46e53});
@@ -472,7 +472,7 @@ function createLight(obj){
     let object = obj.value;
 
     if(object == 'SpotLight'){
-        var objectName = 'SpotLight' + Math.floor(Math.random()*(999-100+1)+100);
+        let objectName = 'SpotLight' + Math.floor(Math.random()*(999-100+1)+100);
 
         window[objectName] = new THREE.SpotLight(0xffffff, 1);
         window[objectName].name = objectName;
@@ -520,14 +520,14 @@ function onDocumentMouseDown(event) {
 
 function select(thing=''){
     if(thing === ''){
-        var vector = new THREE.Vector3((event.clientX / window.innerWidth) * 2 - 1, -(event.clientY / window.innerHeight) * 2 + 1, 0.5);
+        let vector = new THREE.Vector3((event.clientX / window.innerWidth) * 2 - 1, -(event.clientY / window.innerHeight) * 2 + 1, 0.5);
         vector = vector.unproject(camera);
     
-        var raycaster = new THREE.Raycaster(camera.position, vector.sub(camera.position).normalize());
-        var intersects = raycaster.intersectObjects(scene.children, true);
+        let raycaster = new THREE.Raycaster(camera.position, vector.sub(camera.position).normalize());
+        let intersects = raycaster.intersectObjects(scene.children, true);
     
         if(intersects.length > 0){
-            for(var i = 0; i < projectData.length; i++){
+            for(let i = 0; i < projectData.length; i++){
                 if(projectData[i]['object'] == intersects[0].object){
     
                     //If it's not selected
@@ -903,8 +903,8 @@ function updateProperties(){ //Properties options
 
     //If nothing is selected show nothing
     } else {
-        var all_properties = document.getElementsByClassName("properties_row");
-        for(var i = 0; i < all_properties.length; i++){
+        let all_properties = document.getElementsByClassName("properties_row");
+        for(let i = 0; i < all_properties.length; i++){
             all_properties[i].innerHTML = "";
         }
     }
@@ -1041,48 +1041,48 @@ function incrementStats(stat, dir, axis){
     } else if(stat == 'rot'){
         if(dir == 'minus'){
             if(axis == 'x'){
-                var currValueX = document.getElementById('rotationInputX').value;
+                let currValueX = document.getElementById('rotationInputX').value;
                 document.getElementById('rotationInputX').value = (currValueX - rotIncrement) % 360;
             } else if(axis == 'y'){
-                var currValueY = document.getElementById('rotationInputY').value;
+                let currValueY = document.getElementById('rotationInputY').value;
                 document.getElementById('rotationInputY').value = (currValueY - rotIncrement) % 360;
             } else {
-                var currValueZ = document.getElementById('rotationInputZ').value;
+                let currValueZ = document.getElementById('rotationInputZ').value;
                 document.getElementById('rotationInputZ').value = (currValueZ - rotIncrement) % 360;
             }
         } else {
             if(axis == 'x'){
-                var currValueX = document.getElementById('rotationInputX').value;
+                let currValueX = document.getElementById('rotationInputX').value;
                 document.getElementById('rotationInputX').value = (parseInt(currValueX) + rotIncrement) % 360;
             } else if(axis == 'y'){
-                var currValueY = document.getElementById('rotationInputY').value;
+                let currValueY = document.getElementById('rotationInputY').value;
                 document.getElementById('rotationInputY').value = (parseInt(currValueY) + rotIncrement) % 360;
             } else {
-                var currValueZ = document.getElementById('rotationInputZ').value;
+                let currValueZ = document.getElementById('rotationInputZ').value;
                 document.getElementById('rotationInputZ').value = (parseInt(currValueZ) + rotIncrement) % 360;
             }
         }
     } else if(stat == 'scl'){
         if(dir == 'minus'){
             if(axis == 'x'){
-                var currValueX = document.getElementById('scaleInputX').value;
+                let currValueX = document.getElementById('scaleInputX').value;
                 document.getElementById('scaleInputX').value = currValueX - sclIncrement;
             } else if(axis == 'y'){
-                var currValueY = document.getElementById('scaleInputY').value;
+                let currValueY = document.getElementById('scaleInputY').value;
                 document.getElementById('scaleInputY').value = currValueY - sclIncrement;
             } else {
-                var currValueZ = document.getElementById('scaleInputZ').value;
+                let currValueZ = document.getElementById('scaleInputZ').value;
                 document.getElementById('scaleInputZ').value = currValueZ - sclIncrement;
             }
         } else {
             if(axis == 'x'){
-                var currValueX = document.getElementById('scaleInputX').value;
+                let currValueX = document.getElementById('scaleInputX').value;
                 document.getElementById('scaleInputX').value = parseInt(currValueX) + sclIncrement;
             } else if(axis == 'y'){
-                var currValueY = document.getElementById('scaleInputY').value;
+                let currValueY = document.getElementById('scaleInputY').value;
                 document.getElementById('scaleInputY').value = parseInt(currValueY) + sclIncrement;
             } else {
-                var currValueZ = document.getElementById('scaleInputZ').value;
+                let currValueZ = document.getElementById('scaleInputZ').value;
                 document.getElementById('scaleInputZ').value = parseInt(currValueZ) + sclIncrement;
             }
         }
@@ -1091,12 +1091,12 @@ function incrementStats(stat, dir, axis){
 
 //Radians and degrees
 function degrees_to_radians(degrees) {
-    var pi = Math.PI;
+    let pi = Math.PI;
     return degrees * (pi/180);
 }
 
 function radians_to_degrees(radians) {
-  var pi = Math.PI;
+  let pi = Math.PI;
   return radians * (180/pi);
 }
 
@@ -1108,7 +1108,7 @@ function onWindowResize(){
 
 //Color conversions
 function componentToHex(c) {
-    var hex = c.toString(16);
+    let hex = c.toString(16);
     return hex.length == 1 ? "0" + hex : hex;
 }
 
@@ -1117,7 +1117,7 @@ function rgbToHex(r, g, b) {
 }
 
 function hexToRgb(hex) {
-  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
   return result ? {
     r: parseInt(result[1], 16),
     g: parseInt(result[2], 16),
@@ -1126,12 +1126,12 @@ function hexToRgb(hex) {
 }
 
 //Explorer options
-var coll = document.getElementsByClassName("explorer_collapsible");
+let coll = document.getElementsByClassName("explorer_collapsible");
 for (let i = 0; i < coll.length; i++) {
     coll[i].addEventListener("click", function() {
         this.firstChild.className = '';
         this.classList.toggle("active");
-        var content = this.nextElementSibling;
+        let content = this.nextElementSibling;
         
         if (content.style.display === "block") {
             content.style.display = "none";
@@ -1254,6 +1254,9 @@ numWalls.addEventListener("change", function() {
         numWalls.value = 3;
     }
 
+    document.getElementById('build_btn').style.backgroundColor = 'green';
+    document.getElementById('build_btn').style.cursor = 'pointer';
+
     removeLines();
 
     //Render points
@@ -1309,6 +1312,26 @@ flooring.addEventListener('change', function(event){
         URL.revokeObjectURL(output.src)
       }
 });
+
+//Start Build
+let buildingData = [];
+
+function build_structure(){
+    let btn = document.getElementById('build_btn');
+
+    if(getComputedStyle(btn).cursor != 'not-allowed'){
+        for(let x = 0; x < document.getElementsByClassName('building_point').length; x++){
+            let left = document.getElementsByClassName('building_point')[x].style.left.replace('px', '');
+            let top = document.getElementsByClassName('building_point')[x].style.top.replace('px', '');
+            buildingData.push([left, top]);
+        }
+
+        console.log(buildingData);
+        //Use buildingData to create a three.js group for the building.
+        //Allow user to change building height and scale of model
+        //When adding group to projectData, also store buildingData in the group's userData so that you can edit the building later.
+    }
+}
 
 //Listeners
 document.addEventListener('mousedown', onDocumentMouseDown, false);
