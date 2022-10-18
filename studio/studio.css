@@ -293,7 +293,7 @@ tr:nth-child(even) {
     height: calc(100% - 110px);
     top: 110px;
     background-color: white;
-    /* visibility: hidden; */
+    visibility: hidden;
 }
 
 #new_building h2 {
