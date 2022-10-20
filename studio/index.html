@@ -47,7 +47,6 @@
             <button id="terrain_tab" class="tablinks btn" onClick="changeTab(event, 'terrain')">Terrain</button>
             <button id="animate_tab" class="tablinks btn" onClick="changeTab(event, 'animate')">Animate</button>
             <button id="test_tab" class="tablinks btn" onClick="changeTab(event, 'test')">Test</button>
-            <button id="buildings_tab" class="tablinks btn" onClick="changeTab(event, 'buildings')">Buildings</button>
         </div>
         
         <div id="menu">
@@ -90,10 +89,6 @@
 
             <div id="test" class="tabcontent" style="display: none;">
                 <button id='play_btn' class='center btn menu_btn buttonDefaultSize' onClick='tool = "Play"; test_iframe(); document.getElementById("play_btn").style.backgroundColor = "darkgrey"'>Play</button>
-            </div>
-
-            <div id="buildings" class="tabcontent" style="display: none">
-                <button id='new_building_btn' class='center btn menu_btn buttonDefaultSize' onClick='tool = "New Building"; document.getElementById("new_building_btn").style.backgroundColor = "darkgrey"; newBuilding();'>New</button>
             </div>
         </div>
     </div>
@@ -163,34 +158,6 @@
         </table>
 
     </div>
-
-    <!-- New Building Screen -->
-    <div id="new_building">
-        <h2>New Building:</h2>
-        <div id="close_btn" title="Cancel" onClick="canceled_building(this);">x</div>
-
-        <div id="new_building_left">
-            <div id="numWalls" class="question">
-                Number of Walls: <input type="number" min="3" max="10">
-            </div>
-
-            <div id="wallpaper" class="question">
-                Wallpaper: <input type="file" accept="image/*"/>
-                <img id="wallpaper_preview" class="preimg">
-            </div>
-
-            <div id="flooring" class="question">
-                Flooring: <input type="file" accept="image/*"/>
-                <img id="flooring_preview" class="preimg">
-            </div>
-
-            <!-- Build Button -->
-            <div id="build_btn" onclick="build_structure();">BUILD</div>
-        </div>
-
-        <div id="new_building_right"></div>
-    </div>
-    
 
     <script type="text/javascript" src="studio.js" async></script>
 </body>
