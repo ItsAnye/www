@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meltdown</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
+</head>
+<body>
+    <script type="importmap">
+        {
+          "imports": {
+            "@splinetool/loader": "https://unpkg.com/@splinetool/loader@0.9.131/build/SplineLoader.js",
+            "three": "https://unpkg.com/three@0.142.0/build/three.module.js",
+            "three/": "https://unpkg.com/three@0.142.0/"
+          }
+        }
+      </script>
+
+    <div id="header">
+        <h1 class="ui" id="title">Meltdown</h1>
+    </div>
+
+    <!-- Apartments -->
+    <div id="apartments" class="ui desc">
+        <h3>Create your own games! <i class="fa-solid fa-hammer" style="color: orange"></i></h3>
+        <h4 style="margin-top: -15px;"><br>We provide all of the neccesary resources to build an experience, <br>for free!</h4>
+    </div>
+
+    <!-- Shop -->
+    <div id="shop" class="ui desc">
+        <h3>Purchase items in the shop! <i class="fa-solid fa-bolt" style="color: yellow"></i></h3>
+        <h4 style="margin-top: -15px;"><br>Polish up your appearance, and get special perks in games!</h4>
+    </div>
+
+    <!-- Hall -->
+    <div id="hall" class="ui desc">
+        <h3>Collect acheivements along the way! <i class="fa-solid fa-trophy" style="color: gold"></i></h3>
+        <h4 style="margin-top: -15px;"><br>Claim your spot in Meltdown's Hall of Fame by completing quests <br>and playing games.</h4>
+    </div>
+
+    <!-- Play -->
+    <div id="play" class="ui desc">
+        <h3>Join an experience whenever you want! <i class="fa-solid fa-gamepad" style="color: rgb(68, 128, 248)"></i></h3>
+        <h4 style="margin-top: -15px;"><br>No matter what your interest is, we have a game for you. Enjoy!</h4>
+    </div>
+
+    <!-- Update -->
+    <div id="updates" class="ui desc">
+        <h3>New updates regularly! <i class="fa-solid fa-boxes-stacked" style="color: brown"></i></h3>
+        <h4 style="margin-top: -15px;"><br>We are constantly releasing updates so you can have the best experience possible</h4>
+    </div>
+
+    <!-- Next Button -->
+    <div id="next" class="ui"><div>Next</div></div>
+
+    <!-- Scrolling Indicator -->
+    <div id="scroll" class="ui"></div>
+</body>
+<script type="module" src="main.js"></script>
+</html>
