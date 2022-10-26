@@ -85,7 +85,6 @@ function change(index){
         $("#header").fadeIn(1000);
         $("#title").css({'font-size': '32px'});
     } else if(index >= 5){
-        //Don't show apartments, show overview!
         indexx = -1;
         change(-1);
     } 
