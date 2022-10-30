@@ -682,17 +682,6 @@ function play() {
         backgroundMusic.play();
     }
 
-    function settingsBtn() {
-        if(!paused){
-            paused = true;
-            clearInterval(timer);
-        } else {
-            paused = false;
-            clearInterval(timer);
-            timer = setInterval(timerCalled, TIMER_INTERVAL_DURATION);
-        }
-    }
-
     function calculateLevel() {
         preLevel = levels['level'];
         levels['level'] = Math.floor(points / levels['difference']) + 1;

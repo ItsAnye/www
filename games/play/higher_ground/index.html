@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FPS</title>
+    <script src="https://threejs.org/build/three.min.js"></script>
+    <script src="https://threejs.org/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://threejs.org/examples/js/controls/PointerLockControls.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="scene"></div>
+
+    <!-- Crosshair -->
+    <i id="crosshair" class="fa-solid fa-crosshairs"></i>
+
+    <div id="blocker" class="ui">
+        <div id="instructions">
+            <p style="font-size:36px">
+                Click to Play
+            </p>
+            <p>
+                Move: WASD<br>
+                Look: MOUSE
+            </p>
+        </div>
+    </div>
+</body>
+<script src="js/setup.js"></script>
+<script src="js/controls.js"></script>
+<script src="js/maps.js"></script>
+<script src="js/update.js"></script>
+</html>
