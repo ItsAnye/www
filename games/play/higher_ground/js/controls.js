@@ -12,9 +12,13 @@ const KEY_SHIFT = 'shift';
 
 let playerSettings = {
     walk: 0.2,
-    sprint: 0.3,
+    sprint: 0.4,
     walkSFX: 1.5,
-    sprintSFX: 2
+    sprintSFX: 2,
+    sprintValue: 100,
+    canSprint: true,
+    sprintLoss: 1,
+    sprintAdd: 0.25
 }
 
 let safePos = {
@@ -51,64 +55,77 @@ controls.addEventListener('unlock', function () {
 
 function updateControls(){
     if(controls.isLocked){
-        if(keysPressed[KEY_SHIFT]){
+        if(keysPressed[KEY_SHIFT] && playerSettings['sprintValue'] > 0 && playerSettings['canSprint']){
             if(keysPressed[KEY_W] || keysPressed[KEY_UP]){
                 controls.moveForward(playerSettings['sprint']);
                 walkSound.playbackRate = playerSettings['sprintSFX'];
-                walkSound.play();
             }
     
             if(keysPressed[KEY_S] || keysPressed[KEY_DOWN]){
                 controls.moveForward(-playerSettings['sprint']);
                 walkSound.playbackRate = playerSettings['sprintSFX'];
-                walkSound.play();
             }
     
             if(keysPressed[KEY_D] || keysPressed[KEY_RIGHT]){
                 controls.moveRight(playerSettings['sprint']);
                 walkSound.playbackRate = playerSettings['sprintSFX'];
-                walkSound.play();
             }
     
             if(keysPressed[KEY_A] || keysPressed[KEY_LEFT]){
                 controls.moveRight(-playerSettings['sprint']);
                 walkSound.playbackRate = playerSettings['sprintSFX'];
-                walkSound.play();
             }
+
+            //Less stamina
+            playerSettings['sprintValue'] = playerSettings['sprintValue'] - playerSettings['sprintLoss'];
+            document.getElementById('stamina').style.backgroundColor = 'orange';
         } else {
             if(keysPressed[KEY_W] || keysPressed[KEY_UP]){
                 controls.moveForward(playerSettings['walk']);
                 walkSound.playbackRate = playerSettings['walkSFX'];
-                walkSound.play();
             }
     
             if(keysPressed[KEY_S] || keysPressed[KEY_DOWN]){
                 controls.moveForward(-playerSettings['walk']);
                 walkSound.playbackRate = playerSettings['walkSFX'];
-                walkSound.play();
             }
     
             if(keysPressed[KEY_D] || keysPressed[KEY_RIGHT]){
                 controls.moveRight(playerSettings['walk']);
                 walkSound.playbackRate = playerSettings['walkSFX'];
-                walkSound.play();
             }
     
             if(keysPressed[KEY_A] || keysPressed[KEY_LEFT]){
                 controls.moveRight(-playerSettings['walk']);
                 walkSound.playbackRate = playerSettings['walkSFX'];
-                walkSound.play();
+            }
+
+            //More stamina
+            if(playerSettings['sprintValue'] < 100){
+                playerSettings['sprintValue'] = playerSettings['sprintValue'] + playerSettings['sprintAdd'];  
+                playerSettings['canSprint'] = false; 
+                document.getElementById('stamina').style.backgroundColor = 'orange';
+            } else {
+                playerSettings['canSprint'] = true;
+                document.getElementById('stamina').style.backgroundColor = 'lightgreen';
             }
         }
+        
+        document.getElementById('stamina').style.width = playerSettings['sprintValue'] + 'px';
     }   
 }
 
 document.addEventListener('keydown', (event) => {
     keysPressed[event.key.toLowerCase()] = true;
+
+    if(event.key.toLowerCase() == 'w' || event.key.toLowerCase() == 'a' || event.key.toLowerCase() == 's' || event.key.toLowerCase() == 'd'){
+        walkSound.play();
+    }
 }, false);
 
 document.addEventListener('keyup', (event) => {
     keysPressed[event.key.toLowerCase()] = false;
+
     if(event.key.toLowerCase() == 'w' || event.key.toLowerCase() == 'a' || event.key.toLowerCase() == 's' || event.key.toLowerCase() == 'd'){
         walkSound.pause();
     }

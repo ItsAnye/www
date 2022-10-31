@@ -24,5 +24,3 @@ scene.add(light);
 
 let ambient = new THREE.AmbientLight(0xffffff, 1);
 scene.add(ambient);
-
-//Health
