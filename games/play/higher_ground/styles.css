@@ -6,6 +6,10 @@ body {
 	font-size: 13px;
 	line-height: 24px;
 	overscroll-behavior: none;
+    -webkit-user-select: none;    
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; 
 }
 
 #blocker {
@@ -15,10 +19,6 @@ body {
     background-color: rgba(0,0,0,0.5);
     top: 0;
     color: white;
-    -webkit-user-select: none;    
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none; 
 }
 
 #instructions {
@@ -93,4 +93,86 @@ body {
     left: 62px;
     font-size: 20px;
     color: black;
+}
+
+#ammoLoaded {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70px;
+    height: 45px;
+    border-radius: 10px;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+}
+
+#ammoRefills {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-left: 75px;
+    width: 55px;
+    height: 30px;
+    border-radius: 10px;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+}
+
+#ammoRefillsVal {
+    margin-top: 4px;
+}
+
+#ammoLoadedVal {
+    margin-top: 11px;
+}
+
+#weaponsScene {
+    position: absolute;
+    top: 0;
+}
+
+.slot {
+    position: absolute;
+    right: 20px;
+    width: 120px;
+    height: 50px;
+    text-align: right;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.slot img {
+    position: absolute;
+    width: 60px;
+    right: 60px;
+    top: 0;
+}
+
+.slot p:nth-child(1) {
+    padding-right: 10px;
+    margin-top: 10px;
+}
+
+#primary {
+    top: 20px;
+}
+
+#secondary {
+    top: 70px;
+}
+
+#melee {
+    top: 120px;
+}
+
+#explosives {
+    top: 170px;
 }

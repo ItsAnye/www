@@ -4,9 +4,11 @@ function render(){
     renderer.render(scene, camera);
     requestAnimationFrame(render);
 
+    // Collisions
     playerBB.copy(player.geometry.boundingBox).applyMatrix4(player.matrixWorld);
     checkCollisions();
 
+    // Health
     if(document.getElementById('health').offsetWidth < 100){
         document.getElementById('health').style.backgroundColor = '#FF0000';
     } else if(document.getElementById('health').offsetWidth < 200){

@@ -30,15 +30,13 @@ let safePos = {
 let walkSound = new Audio("Assets/Audio/walk.mp3");
 walkSound.loop = true;
 
-let controls = new THREE.PointerLockControls(camera, document.getElementById('scene'));
+let controls;
 
 let blocker = document.getElementById('blocker');
 let instructions = document.getElementById('instructions');
 let crosshair = document.getElementById('crosshair');
 
-instructions.addEventListener('click', function () {
-    controls.lock();
-}, false);
+controls = new THREE.PointerLockControls(camera, document.getElementById('scene'));
 
 controls.addEventListener('lock', function () {
     instructions.style.display = 'none';
@@ -53,66 +51,72 @@ controls.addEventListener('unlock', function () {
     walkSound.pause();
 }, false);
 
+instructions.addEventListener('click', function () {
+    controls.lock();
+}, false);
+
 function updateControls(){
-    if(controls.isLocked){
-        if(keysPressed[KEY_SHIFT] && playerSettings['sprintValue'] > 0 && playerSettings['canSprint']){
-            if(keysPressed[KEY_W] || keysPressed[KEY_UP]){
-                controls.moveForward(playerSettings['sprint']);
-                walkSound.playbackRate = playerSettings['sprintSFX'];
-            }
+    if(controls != undefined){
+        if(controls.isLocked){
+            if(keysPressed[KEY_SHIFT] && playerSettings['sprintValue'] > 0 && playerSettings['canSprint']){
+                if(keysPressed[KEY_W] || keysPressed[KEY_UP]){
+                    controls.moveForward(playerSettings['sprint']);
+                    walkSound.playbackRate = playerSettings['sprintSFX'];
+                }
+        
+                if(keysPressed[KEY_S] || keysPressed[KEY_DOWN]){
+                    controls.moveForward(-playerSettings['sprint']);
+                    walkSound.playbackRate = playerSettings['sprintSFX'];
+                }
+        
+                if(keysPressed[KEY_D] || keysPressed[KEY_RIGHT]){
+                    controls.moveRight(playerSettings['sprint']);
+                    walkSound.playbackRate = playerSettings['sprintSFX'];
+                }
+        
+                if(keysPressed[KEY_A] || keysPressed[KEY_LEFT]){
+                    controls.moveRight(-playerSettings['sprint']);
+                    walkSound.playbackRate = playerSettings['sprintSFX'];
+                }
     
-            if(keysPressed[KEY_S] || keysPressed[KEY_DOWN]){
-                controls.moveForward(-playerSettings['sprint']);
-                walkSound.playbackRate = playerSettings['sprintSFX'];
-            }
-    
-            if(keysPressed[KEY_D] || keysPressed[KEY_RIGHT]){
-                controls.moveRight(playerSettings['sprint']);
-                walkSound.playbackRate = playerSettings['sprintSFX'];
-            }
-    
-            if(keysPressed[KEY_A] || keysPressed[KEY_LEFT]){
-                controls.moveRight(-playerSettings['sprint']);
-                walkSound.playbackRate = playerSettings['sprintSFX'];
-            }
-
-            //Less stamina
-            playerSettings['sprintValue'] = playerSettings['sprintValue'] - playerSettings['sprintLoss'];
-            document.getElementById('stamina').style.backgroundColor = 'orange';
-        } else {
-            if(keysPressed[KEY_W] || keysPressed[KEY_UP]){
-                controls.moveForward(playerSettings['walk']);
-                walkSound.playbackRate = playerSettings['walkSFX'];
-            }
-    
-            if(keysPressed[KEY_S] || keysPressed[KEY_DOWN]){
-                controls.moveForward(-playerSettings['walk']);
-                walkSound.playbackRate = playerSettings['walkSFX'];
-            }
-    
-            if(keysPressed[KEY_D] || keysPressed[KEY_RIGHT]){
-                controls.moveRight(playerSettings['walk']);
-                walkSound.playbackRate = playerSettings['walkSFX'];
-            }
-    
-            if(keysPressed[KEY_A] || keysPressed[KEY_LEFT]){
-                controls.moveRight(-playerSettings['walk']);
-                walkSound.playbackRate = playerSettings['walkSFX'];
-            }
-
-            //More stamina
-            if(playerSettings['sprintValue'] < 100){
-                playerSettings['sprintValue'] = playerSettings['sprintValue'] + playerSettings['sprintAdd'];  
-                playerSettings['canSprint'] = false; 
+                //Less stamina
+                playerSettings['sprintValue'] = playerSettings['sprintValue'] - playerSettings['sprintLoss'];
                 document.getElementById('stamina').style.backgroundColor = 'orange';
             } else {
-                playerSettings['canSprint'] = true;
-                document.getElementById('stamina').style.backgroundColor = 'lightgreen';
-            }
-        }
+                if(keysPressed[KEY_W] || keysPressed[KEY_UP]){
+                    controls.moveForward(playerSettings['walk']);
+                    walkSound.playbackRate = playerSettings['walkSFX'];
+                }
         
-        document.getElementById('stamina').style.width = playerSettings['sprintValue'] + 'px';
-    }   
+                if(keysPressed[KEY_S] || keysPressed[KEY_DOWN]){
+                    controls.moveForward(-playerSettings['walk']);
+                    walkSound.playbackRate = playerSettings['walkSFX'];
+                }
+        
+                if(keysPressed[KEY_D] || keysPressed[KEY_RIGHT]){
+                    controls.moveRight(playerSettings['walk']);
+                    walkSound.playbackRate = playerSettings['walkSFX'];
+                }
+        
+                if(keysPressed[KEY_A] || keysPressed[KEY_LEFT]){
+                    controls.moveRight(-playerSettings['walk']);
+                    walkSound.playbackRate = playerSettings['walkSFX'];
+                }
+    
+                //More stamina
+                if(playerSettings['sprintValue'] < 100){
+                    playerSettings['sprintValue'] = playerSettings['sprintValue'] + playerSettings['sprintAdd'];  
+                    playerSettings['canSprint'] = false; 
+                    document.getElementById('stamina').style.backgroundColor = 'orange';
+                } else {
+                    playerSettings['canSprint'] = true;
+                    document.getElementById('stamina').style.backgroundColor = 'lightgreen';
+                }
+            }
+            
+            document.getElementById('stamina').style.width = playerSettings['sprintValue'] + 'px';
+        } 
+    }  
 }
 
 document.addEventListener('keydown', (event) => {
@@ -120,6 +124,19 @@ document.addEventListener('keydown', (event) => {
 
     if(event.key.toLowerCase() == 'w' || event.key.toLowerCase() == 'a' || event.key.toLowerCase() == 's' || event.key.toLowerCase() == 'd'){
         walkSound.play();
+    }
+
+    //Switching
+    if(event.key == '1' && weapons['primary'] != undefined){
+        selectUI(primary);
+        loadWeapon(weapons['primary'], 'primary');
+    } else if(event.key == '2' && weapons['secondary'] != undefined){
+        selectUI(secondary);
+    } else if(event.key == '3' && weapons['melee'] != undefined){
+        selectUI(melee);
+        loadWeapon(weapons['melee'], 'melee');
+    } else if(event.key == '4' && weapons['explosives'] != undefined){
+        selectUI(explosives);
     }
 }, false);
 

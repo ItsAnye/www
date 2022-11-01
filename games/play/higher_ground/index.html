@@ -21,6 +21,7 @@
 </head>
 <body>
     <div id="scene"></div>
+    <div id="weaponsScene"></div>
 
     <!-- Crosshair -->
     <i id="crosshair" class="fa-solid fa-crosshairs"></i>
@@ -32,8 +33,9 @@
                 Click to Play
             </p>
             <p>
-                Move: WASD<br>
-                Look: MOUSE
+                Look: MOUSE<br>
+                Move: WASD / Arrow Keys<br>
+                Sprint: SHIFT
             </p>
         </div>
     </div>
@@ -47,11 +49,38 @@
     <div id="stamina" class="stamina"></div>
     <div id="staminaTxt">Stamina</div>
 
+    <!-- Ammo -->
+    <div id="ammoLoaded" class="ammo"><div id="ammoLoadedVal">9</div></div>
+    <div id="ammoRefills" class="ammo"><div id="ammoRefillsVal">45</div></div>
 
-    <!-- Stamina -->
+    <!-- Slots -->
+    <div id="primary" class="slot">
+        <p>1<p>
+        <p></p>
+        <img/>
+    </div>
+
+    <div id="secondary" class="slot">
+        <p>2<p>
+        <p></p>
+        <img/>
+    </div>
+
+    <div id="melee" class="slot">
+        <p>3<p>
+        <p></p>
+        <img/>
+    </div>
+
+    <div id="explosives" class="slot">
+        <p>4<p>
+        <p></p>
+        <img/>
+    </div>
 </body>
 <script src="js/setup.js"></script>
-<script src="js/controls.js"></script>
 <script src="js/maps.js"></script>
+<script src="js/weapons.js"></script>
+<script src="js/controls.js"></script>
 <script src="js/update.js"></script>
 </html>
