@@ -20,16 +20,42 @@ function wrender(){
 wrender();
 
 let weapons = {
-    'primary': 'M9',
+    'primary': undefined,
     'secondary': undefined,
     'melee': undefined,
     'explosives': undefined,
 }
 
-let ammo = {
+let ammo = { 
     'primary': [9, 45],
-    'secondary': undefined,
+    'secondary': [10, 90],
     'explosives': 0
+}
+
+let weaponsData = { //Capacity, Reload, AmmoType
+    'primary': {
+        'Scout': [5, 1.8, 'p'],
+        'Reaper': [2, 3, 'p'],
+        'Flamer': [100, 4, 'r'],
+        'Central': [3, 3, 'r'],
+        'Sniper': [5, 3, 'y'],
+        'RPG': [1, 2, 'y'],
+        'Crusher': [20, 2.3, 'y'],
+        'Apollo': [8, 2.7, 'y'],
+        'Rockets': [4, 1.5, 'g'],
+        'Shotty': [2, 2.7, 'g'],
+        'Calamity': [10, 4, 'g'],
+        'Brutality': [2, 3, 'g']
+    },
+    
+    'secondary': {
+        'DEagle': [7, 2.3, 'p'],
+        'Loner': [30, 2, 'p'],
+        'Grinder': [20, 1.8, 'p'],
+        'Pistol': [15, 1.5, 'r'],
+        'Uzi': [32, 1.8, 'r'],
+        'Mercury': [13, 3, 'y'],
+    },
 }
 
 let currWeapon;
@@ -41,14 +67,14 @@ function loadWeapon(name, slot){
             if (child.material) child.material.metalness = 0;
         });
     
-        if(name == 'M9'){
-            glb.scene.scale.set(3, 3, 3);
-        } else {
+        if(name == 'Knife'){
             glb.scene.scale.set(0.04, 0.04, 0.04);
+        } else {
+            glb.scene.scale.set(3, 3, 3);
         }
         
         glb.scene.position.set(63, 2, -2);
-        if(name == 'M9'){
+        if(name != 'Knife'){
             glb.scene.rotation.set(Math.PI, deg(250), Math.PI);
         }
 
@@ -92,6 +118,17 @@ function selectUI(slot){
     }
 }
 
-loadWeapon('knife', 'melee');
+
+
+function getRandomProperty(obj) {
+    return Object.keys(obj)[Math.floor(Math.random() * Object.keys(obj).length)];
+}
+
+loadWeapon(getRandomProperty(weaponsData['primary']), 'primary');
 selectUI(primary);
+
+loadWeapon("Pistol", 'secondary');
+selectUI(secondary);
+
+loadWeapon('Knife', 'melee');
 selectUI(melee);

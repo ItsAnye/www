@@ -132,6 +132,7 @@ document.addEventListener('keydown', (event) => {
         loadWeapon(weapons['primary'], 'primary');
     } else if(event.key == '2' && weapons['secondary'] != undefined){
         selectUI(secondary);
+        loadWeapon(weapons['secondary'], 'secondary');
     } else if(event.key == '3' && weapons['melee'] != undefined){
         selectUI(melee);
         loadWeapon(weapons['melee'], 'melee');
