@@ -18,7 +18,8 @@ let playerSettings = {
     sprintValue: 100,
     canSprint: true,
     sprintLoss: 1,
-    sprintAdd: 0.25
+    sprintAdd: 0.25,
+    recoil: 0
 }
 
 let safePos = {
@@ -60,22 +61,22 @@ function updateControls(){
         if(controls.isLocked){
             if(keysPressed[KEY_SHIFT] && playerSettings['sprintValue'] > 0 && playerSettings['canSprint']){
                 if(keysPressed[KEY_W] || keysPressed[KEY_UP]){
-                    controls.moveForward(playerSettings['sprint']);
+                    controls.moveForward(playerSettings['sprint'] - playerSettings['recoil']);
                     walkSound.playbackRate = playerSettings['sprintSFX'];
                 }
         
                 if(keysPressed[KEY_S] || keysPressed[KEY_DOWN]){
-                    controls.moveForward(-playerSettings['sprint']);
+                    controls.moveForward(-playerSettings['sprint'] - playerSettings['recoil']);
                     walkSound.playbackRate = playerSettings['sprintSFX'];
                 }
         
                 if(keysPressed[KEY_D] || keysPressed[KEY_RIGHT]){
-                    controls.moveRight(playerSettings['sprint']);
+                    controls.moveRight(playerSettings['sprint'] - playerSettings['recoil']);
                     walkSound.playbackRate = playerSettings['sprintSFX'];
                 }
         
                 if(keysPressed[KEY_A] || keysPressed[KEY_LEFT]){
-                    controls.moveRight(-playerSettings['sprint']);
+                    controls.moveRight(-playerSettings['sprint'] - playerSettings['recoil']);
                     walkSound.playbackRate = playerSettings['sprintSFX'];
                 }
     
@@ -84,22 +85,22 @@ function updateControls(){
                 document.getElementById('stamina').style.backgroundColor = 'orange';
             } else {
                 if(keysPressed[KEY_W] || keysPressed[KEY_UP]){
-                    controls.moveForward(playerSettings['walk']);
+                    controls.moveForward(playerSettings['walk'] - playerSettings['recoil']);
                     walkSound.playbackRate = playerSettings['walkSFX'];
                 }
         
                 if(keysPressed[KEY_S] || keysPressed[KEY_DOWN]){
-                    controls.moveForward(-playerSettings['walk']);
+                    controls.moveForward(-playerSettings['walk'] - playerSettings['recoil']);
                     walkSound.playbackRate = playerSettings['walkSFX'];
                 }
         
                 if(keysPressed[KEY_D] || keysPressed[KEY_RIGHT]){
-                    controls.moveRight(playerSettings['walk']);
+                    controls.moveRight(playerSettings['walk'] - playerSettings['recoil']);
                     walkSound.playbackRate = playerSettings['walkSFX'];
                 }
         
                 if(keysPressed[KEY_A] || keysPressed[KEY_LEFT]){
-                    controls.moveRight(-playerSettings['walk']);
+                    controls.moveRight(-playerSettings['walk'] - playerSettings['recoil']);
                     walkSound.playbackRate = playerSettings['walkSFX'];
                 }
     

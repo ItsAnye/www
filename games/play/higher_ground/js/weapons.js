@@ -97,7 +97,7 @@ let choices = [primary, secondary, melee, explosives];
 function selectUI(slot){
     //Deselect other slots
     for(let i = 0; i < choices.length; i++){
-        choices[i].style.backgroundColor = 'rgba(0, 0, 0, 0)';
+        choices[i].style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
     }
 
     //Selected slot
@@ -127,7 +127,7 @@ function getRandomProperty(obj) {
 loadWeapon(getRandomProperty(weaponsData['primary']), 'primary');
 selectUI(primary);
 
-loadWeapon("Pistol", 'secondary');
+loadWeapon(getRandomProperty(weaponsData['secondary']), 'secondary');
 selectUI(secondary);
 
 loadWeapon('Knife', 'melee');
