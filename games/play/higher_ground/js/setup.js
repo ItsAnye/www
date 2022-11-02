@@ -9,6 +9,8 @@ renderer.setClearColor(0x87CEEB);
 camera.position.set(65, 3, 0);
 camera.lookAt(0, 0, 0);
 
+let tl = new TimelineMax();
+
 //Player
 var player = new THREE.Mesh(new THREE.BoxGeometry(2, 2, 2), new THREE.MeshLambertMaterial({color: 0xff0000}));
 player.position.set(65, 3, 0);

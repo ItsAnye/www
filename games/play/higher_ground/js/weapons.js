@@ -26,6 +26,12 @@ let weapons = {
     'explosives': undefined,
 }
 
+let ammo = {
+    'primary': [9, 45],
+    'secondary': undefined,
+    'explosives': 0
+}
+
 let currWeapon;
 
 function loadWeapon(name, slot){
@@ -76,7 +82,11 @@ function selectUI(slot){
     slot.children[1].style.marginTop = '-15px';
     slot.children[2].innerHTML = `<img src='./Assets/Weapons/Previews/${name.toLowerCase()}.png' />`;
 
-    if(slot.id == 'melee'){
+    if(slot.id == 'primary' || slot.id == 'secondary'){
+        document.getElementById('ammoRefills').style.display = 'block';
+        document.getElementById('ammoLoadedVal').innerHTML = ammo[slot.id][0];
+        document.getElementById('ammoRefillsVal').innerHTML = ammo[slot.id][1];
+    } else if(slot.id == 'melee'){
         document.getElementById('ammoRefills').style.display = 'none';
         document.getElementById('ammoLoadedVal').innerHTML = '∞';
     }
