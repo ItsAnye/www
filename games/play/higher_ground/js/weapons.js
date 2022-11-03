@@ -24,12 +24,15 @@ let weapons = {
     'secondary': undefined,
     'melee': undefined,
     'explosives': undefined,
+    'pa': undefined,
+    'sa': undefined,
 }
 
 let ammo = { 
-    'primary': [9, 45],
-    'secondary': [10, 90],
-    'explosives': 0
+    'p': 100,
+    'y': 100,
+    'r': 100,
+    'g': 100
 }
 
 let weaponsData = { //Capacity, Reload, AmmoType
@@ -62,6 +65,10 @@ let currWeapon;
 
 function loadWeapon(name, slot){
     weapons[slot] = name;
+    if(slot == 'primary' || slot == 'secondary'){
+        weapons[slot.charAt(0) + 'a'] = weaponsData[slot][weapons[slot]][0];
+    }
+
     loader.load(`Assets/Weapons/${name}.glb`, function(glb){
         glb.scene.traverse(child => {
             if (child.material) child.material.metalness = 0;
@@ -110,8 +117,8 @@ function selectUI(slot){
 
     if(slot.id == 'primary' || slot.id == 'secondary'){
         document.getElementById('ammoRefills').style.display = 'block';
-        document.getElementById('ammoLoadedVal').innerHTML = ammo[slot.id][0];
-        document.getElementById('ammoRefillsVal').innerHTML = ammo[slot.id][1];
+        document.getElementById('ammoLoadedVal').innerHTML = weapons[slot.id.charAt(0) + 'a'];
+        document.getElementById('ammoRefillsVal').innerHTML = ammo[weaponsData[slot.id][weapons[slot.id]][2]];
     } else if(slot.id == 'melee'){
         document.getElementById('ammoRefills').style.display = 'none';
         document.getElementById('ammoLoadedVal').innerHTML = '∞';
