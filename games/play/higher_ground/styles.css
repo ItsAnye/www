@@ -217,3 +217,8 @@ body {
     color: black;
     right: 20px;
 }
+
+#reload {
+    position: absolute;
+    top: 0;
+}

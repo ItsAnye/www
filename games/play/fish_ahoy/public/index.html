@@ -1,0 +1,108 @@
+
+<html>
+    <head>
+        <title>[BETA] Fish Ahoy!</title>
+        <script src="https://threejs.org/build/three.min.js"></script>
+        <script src="https://threejs.org/examples/js/controls/OrbitControls.js"></script>
+        <script src="https://threejs.org/examples/js/loaders/OBJLoader.js"></script>
+        <script src="https://threejs.org/examples/js/loaders/MTLLoader.js"></script>
+        <script src="Reflector.js"></script>
+        <script src="Refractor.js"></script>
+        <script src="Water2.js"></script>
+    
+        <link rel="stylesheet" href="main.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Gemunu+Libre&family=Libre+Franklin:wght@900&display=swap" rel="stylesheet">
+    </head>
+    
+    <body>
+      <div id="chat" style="display: none;">
+          <div id="topButtons" class="ui">
+            <div id="topButtonSettings">
+    <!--           <img src="Assets/Meltdown.png"> -->
+            </div>
+    
+            <div id="topButtonChat"></div>
+          </div>
+    
+          <div id="chatPanel" class="ui">
+            <ul id="messages"></ul>
+            <form id="chatForm">
+              <input id="chatInput" type="text" autocomplete="off" placeholder='To chat click here or press "/" key.'>
+              <input type="submit" style="display: none"/>
+            </form>
+          </div>
+        </div>
+    
+        <div id="home">
+            <span id="fish">FISH</span><br>
+            <span id="ahoy">AHOY</span>
+            <br>
+            <div onclick="start()" id="play_btn"></div>
+            <div onclick="start()" id="playtxt">Play</div>
+        </div>
+      
+      <div id="money" class="ui" style="display: none">
+        <span class="dollarSign">$<span id="userMoney">0</span></span>
+      </div>
+      
+      <div id="inventory" class="ui" style="display: none">
+        <span class="dollarSign"><span id="usedInv">0</span>/<span id="totalInv">5</span></span>
+      </div>
+    
+      <div id="shop-container" style="display: none" onclick="toggleShop()">
+        <div>SHOP</div>
+      </div>
+
+      <div id="map-container" onclick="toggleMap()">
+        <div><i class="fa-solid fa-map"></i></div>
+      </div>
+      
+        <div id="shop-menu" class="ui">
+            <div class="tab">
+                <button class="tablinks" style="background-color: #feffd6; border-radius: 10px 0 0 0;" onclick="shopTab(event, 'Boats', this);">Boats</button>
+                <button class="tablinks" onclick="shopTab(event, 'Rods', this);">Rods</button>
+                <button class="tablinks" style="border-radius: 0 0 10px 0;" onclick="shopTab(event, 'Backpacks', this);">Backpacks</button>
+            </div>
+
+            <div id="Boats" class="tabcontent"></div>
+            <div id="Rods" class="tabcontent"></div>
+            <div id="Backpacks" class="tabcontent"></div>
+        </div>
+
+
+      <div id="map-menu" class="ui">
+        <div id="map-details"></div>
+      </div>
+      
+     
+    
+      <!-- <div id="fishing_warning" style="display: none; font-size: 30px; color: black; position: absolute; font-family: Arial, Helvetica, sans-serif; left: 50%; transform: translateX(-50%); bottom: 50px; font-weight: bold;">You can only fish on the docks/ocean.</div> -->
+      <div id="fishing_warning"></div>
+
+      <div id="level_container">
+        <div id="level">
+			<p id="levelTXT">1</p>
+		</div>
+        <div id="level_progress">
+			<div id="level_prog_bar"></div>
+		</div>
+      </div>
+    
+      <button id="fishing_button" style="position: absolute; left: 50%; transform: translateX(-50%); bottom: 50px; display: none; width: 200px; height: 100px; background-color: lightpink; color: black; border-radius: 30px; text-align: center;"><div style="font-size: 40px">FISH</div></button>
+    
+      <div id="sell-menu" class="ui"></div>
+      <div id="sell_btn" style="display: none; height: 10%; width: 10%; position: absolute; bottom: calc(10% + 35px); background-color: purple; color: white; left: calc(20% + 15px); border-radius: 20px;"><div style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font-family: Arial, Helvetica, sans-serif; font-size: 30px;">SELL</div></div>
+    
+    <div id="minigame-container">
+        <div id="openBTN" onclick="toggleMinigames()"><p id="btn_txt">O<br>P<br>E<br>N</p></div>
+        <div id="games_container"></div>
+    </div>
+      
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="main.js"></script>
+    </body>
+    </html>
