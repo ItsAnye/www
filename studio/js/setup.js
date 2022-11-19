@@ -139,3 +139,17 @@ projectData.push(
         }
     }
 );
+
+let projector = new THREE.Projector();
+let fbxLoader = new THREE.FBXLoader();
+
+function render() {
+    requestAnimationFrame(render);
+    renderer.render(scene, camera);
+};
+
+document.getElementById("scene").appendChild(renderer.domElement);
+render();
+
+document.addEventListener('mousedown', onDocumentMouseDown, false);
+window.addEventListener('resize', onWindowResize, false);
