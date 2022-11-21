@@ -1,5 +1,3 @@
-STUDIO SELECTION IS ALL FUCKED UP - make separate classes like li-select, obj-select, rig-select...
-
 Fix Background color on buttons in header
 When Rig is loaded, edit tab color slider doesn't change rig skin color
 For selecting in explorer, rather than deselecting then selecting again (2 clicks), do it all in one click.
@@ -9,7 +7,5 @@ When material is changed, make sure opacity is still set to slider value (curren
 
 Spotlights:
 
-SpotLight's position settings are acting wierd.
-Cant select lights after rig loaded :(
 SPOTLIGHT POSITION SHOULD CHANGE SPOTLIGHT POSITION
 SPOTLIGHT ROTATION SHOULD CHANGE SPOTLIGHT TARGET POSTION!!!!!

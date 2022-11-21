@@ -144,5 +144,25 @@ function render() {
 document.getElementById("scene").appendChild(renderer.domElement);
 render();
 
+function onWindowResize(){
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize( window.innerWidth, window.innerHeight );
+}
+
+function onDocumentMouseDown(event) {
+    if(event.clientX <= (window.innerWidth - 300)) {
+        if(tool == 'Select'){
+            if(helper != undefined) scene.remove(helper);
+            helper = undefined;
+            select();
+        } else if(tool == 'Move') {
+            console.log(projectData);
+        }
+
+        updateProperties();
+    }
+};
+
 document.addEventListener('mousedown', onDocumentMouseDown, false);
 window.addEventListener('resize', onWindowResize, false);

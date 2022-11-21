@@ -312,5 +312,5 @@ function createLight(obj){
 };
 
 let updates = setInterval(function(){
-    helper.update();
+    if(helper != undefined) helper.update();
 }, 100);

@@ -8,12 +8,6 @@ function radians_to_degrees(radians) {
   return radians * (180/pi);
 }
 
-function onWindowResize(){
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize( window.innerWidth, window.innerHeight );
-}
-
 function componentToHex(c) {
     let hex = c.toString(16);
     return hex.length == 1 ? "0" + hex : hex;
@@ -31,20 +25,6 @@ function hexToRgb(hex) {
         b: parseInt(result[3], 16)
     } : null;
 }
-
-function onDocumentMouseDown(event) {
-    if(event.clientX <= (window.innerWidth - 300)) {
-        if(tool == 'Select'){
-            if(helper != undefined) scene.remove(helper);
-            helper = undefined;
-            select();
-        } else if(tool == 'Move') {
-            console.log(projectData);
-        }
-
-        updateProperties();
-    }
-};
 
 function select(thing=''){
     if(thing === ''){
