@@ -35,9 +35,8 @@ function hexToRgb(hex) {
 function onDocumentMouseDown(event) {
     if(event.clientX <= (window.innerWidth - 300)) {
         if(tool == 'Select'){
-            for(let i = 0; i < toUpdate.length; i++){
-                scene.remove(toUpdate[i]);
-            }
+            if(helper != undefined) scene.remove(helper);
+            helper = undefined;
             select();
         } else if(tool == 'Move') {
             console.log(projectData);
@@ -68,7 +67,8 @@ function select(thing=''){
     
                             if(Object.keys(selected.userData).length > 0){
                                 if(selected.userData.outline == undefined){
-                                    scene.remove(selected.userData.helper)
+                                    if(helper != undefined) scene.remove(helper);
+                                    helper = undefined;
                                 } else {
                                     selected.userData.outline.visible = false;
                                 }
@@ -94,7 +94,8 @@ function select(thing=''){
     
                         if(selected != null && Object.keys(selected.userData).length > 0){
                             if(selected.userData.outline == undefined){
-                                scene.remove(selected.userData.helper);
+                                if(helper != undefined) scene.remove(helper);
+                                helper = undefined;
                             } else {
                                 selected.userData.outline.visible = false;
                             }
@@ -148,22 +149,26 @@ function select(thing=''){
         if(selected.type == 'SpotLight'){
             for(let x = 0; x < projectData.length; x++){
                 if(projectData[x].object.userData.helper != undefined){
-                    scene.remove(projectData[x].object.userData.helper);
+                    if(helper != undefined) scene.remove(helper);
+                    helper = undefined;
                 }
             }
 
-            scene.add(selected.userData.helper);
+            helper = new THREE.SpotLightHelper(selected)
+            scene.add(helper);
         } else {
             for(let i = 0; i < projectData.length; i++){
                 if(projectData[i]['object'].type == 'SpotLight'){
-                    scene.remove(projectData[i]['object'].userData.helper);
+                    if(helper != undefined) scene.remove(helper);
+                    helper = undefined;
                 }
             }
         }
     } else {
         for(let i = 0; i < projectData.length; i++){
             if(projectData[i]['object'].type == 'SpotLight'){
-                scene.remove(projectData[i]['object'].userData.helper);
+                if(helper != undefined) scene.remove(helper);
+                helper = undefined;
             }
         }
     }

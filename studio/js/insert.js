@@ -312,7 +312,5 @@ function createLight(obj){
 };
 
 let updates = setInterval(function(){
-    for(let i = 0; i < toUpdate.length; i++){
-        toUpdate[i].update();
-    }
+    helper.update();
 }, 100);

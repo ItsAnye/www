@@ -11,7 +11,7 @@ let renderer = new THREE.WebGLRenderer();
 let textureLoader = new THREE.TextureLoader();
 // let heightMap = textureLoader.load('../Textures/height.png');
 let projectData = [];
-let toUpdate = [];
+let helper;
 
 let posIncrement = 5;
 let rotIncrement = 20;
@@ -46,13 +46,6 @@ let sunLight = new THREE.SpotLight(0xffffff, 1, 1000, Math.PI / 4);
 sunLight.position.set(0, 10, 0);
 sunLight.lookAt(0, 0, 0)
 sunLight.name = 'SpotLight1';
-
-let sunLightHelper = new THREE.SpotLightHelper(sunLight);
-toUpdate.push(sunLightHelper);
-
-sunLight.userData = {
-    helper: sunLightHelper
-}
 
 scene.add(sunLight);
 
