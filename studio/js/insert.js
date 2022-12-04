@@ -304,7 +304,7 @@ function createLight(obj){
             }
         );
 
-        document.getElementById('explorer_light_content').firstElementChild.innerHTML += `<li class="li_click_select"><i class="fa-solid fa-sun"></i>  ${objectName} <div style="display: inline; float: right; margin-right: 20px;"><i class="fa-regular fa-hand-pointer fa-beat"></i></div></li>`;
+        document.getElementById('explorer_light_content').firstElementChild.innerHTML += `<li class="li_click_select"><i class="fa-solid fa-sun"></i>  ${objectName}</li>`;
         updateExplorerClick();
     }
 

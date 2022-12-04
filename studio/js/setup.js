@@ -6,12 +6,14 @@ let loadedRig;
 
 let scene = new THREE.Scene();
 let camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
-let renderer = new THREE.WebGLRenderer();
+let renderer = new THREE.WebGLRenderer({antialias: true});
 
 let textureLoader = new THREE.TextureLoader();
 // let heightMap = textureLoader.load('../Textures/height.png');
 let projectData = [];
-let helper;
+let helper, outline;
+outline = new THREE.BoxHelper(loadedRig, 0xff0000);
+scene.add(outline);
 
 let posIncrement = 5;
 let rotIncrement = 20;
@@ -93,7 +95,8 @@ projectData.push(
             selected: false,
             selectable: true,
             outline: sphereOutlineMesh,
-            outlineVisible: false
+            outlineVisible: false,
+            type: 'Rig'
         }
     }
 );
@@ -151,7 +154,7 @@ function onWindowResize(){
 }
 
 function onDocumentMouseDown(event) {
-    if(event.clientX <= (window.innerWidth - 300)) {
+    if(event.clientX <= (window.innerWidth - 300) && event.clientY > 110) {
         if(tool == 'Select'){
             if(helper != undefined) scene.remove(helper);
             helper = undefined;
@@ -164,5 +167,5 @@ function onDocumentMouseDown(event) {
     }
 };
 
-document.addEventListener('mousedown', onDocumentMouseDown, false);
-window.addEventListener('resize', onWindowResize, false);
+document.addEventListener('mousedown', onDocumentMouseDown, {passive: true});
+window.addEventListener('resize', onWindowResize, {passive: true});

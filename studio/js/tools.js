@@ -1,3 +1,5 @@
+let currTab = 'home';
+
 function degrees_to_radians(degrees) {
     let pi = Math.PI;
     return degrees * (pi/180);
@@ -24,6 +26,16 @@ function hexToRgb(hex) {
         g: parseInt(result[2], 16),
         b: parseInt(result[3], 16)
     } : null;
+}
+
+
+function createTable(n){
+	document.getElementById('tbody').innerHTML = ''
+	for(let i = 0; i < n; i++){
+		document.getElementById('tbody').innerHTML += `<tr><td>&nbsp;</td></tr>`;
+	}
+
+	document.getElementById('editing_panel').scroll(10, 0)
 }
 
 function select(thing=''){
@@ -61,6 +73,9 @@ function select(thing=''){
                         //If object isn't selectable, making opacity 0.8 rather than 0.5
                         if(projectData[i]['hidden']['selectable'] == false){
                             //fill
+                            if(projectData[i]['hidden']['type'] == 'Rig'){
+                                console.log('rig!!!') //Testing 
+                            }
                         } else {
                             //Outline doesn't exist here.
                             projectData[i]['hidden']['outline'].visible = true;
@@ -152,6 +167,23 @@ function select(thing=''){
             }
         }
     }
+
+    changeTab(undefined, currTab);
+
+	if(selected != null){
+		document.getElementById('sub_panels').innerHTML = `<p>${selected.name}</p>`;
+		for(let i = 0; i < selected.children.length; i++){
+			if(selected.children[0].name != ''){
+				document.getElementById('sub_panels').innerHTML += `<p>${selected.children[0].name}</p>`;
+			} else {
+				document.getElementById('sub_panels').innerHTML += `<p>&lt;child&gt;</p>`;
+			}
+		}
+		createTable(document.getElementById('sub_panels').childElementCount);
+	} else {
+		document.getElementById('sub_panels').innerHTML = '';
+	}
+	
 }
 
 function getRandomInt(min, max) {
@@ -168,7 +200,6 @@ function changeTab(evt, tab){
     }
 
     document.getElementById(tab).style.display = "block";
-    evt.currentTarget.className += " active";
 
     if(tab == 'edit'){
         if(loadedRig != undefined){
@@ -176,9 +207,16 @@ function changeTab(evt, tab){
             <label for='torso'>\
             <input type='color'></input>"
         } else {
-            document.getElementById(tab).innerHTML = "Please load a rig first!"
+            document.getElementById(tab).innerHTML = "Please load a rig first!";
         }
-    } else {
+    } else if(tab == 'animate') {
+        if(selected != undefined){
+            document.getElementById(tab).innerHTML = `\
+            <button id='newAnim_btn' class='center btn menu_btn buttonDefaultSize' onClick='tool = "New Animation"; document.getElementById("newAnim_btn").style.backgroundColor = "darkgrey"; document.getElementById("animator_panel").style.display = "block";'>New</button>`
+		} else {
+			document.getElementById(tab).innerHTML = 'Please select an object first!';
+		}
+	} else {
         document.getElementById(tab).style.display = 'block';
     }
 
@@ -187,4 +225,6 @@ function changeTab(evt, tab){
         all[i].style.backgroundColor = 'lightgrey';
     }
     document.getElementById(tab + '_tab').style.backgroundColor = "darkgrey";
+
+    currTab = tab;
 };
